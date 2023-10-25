@@ -5,16 +5,23 @@ document.getElementById('saveBtn').onclick = function (e) {
     let height = document.getElementById('height').value;
 
     let str = "";
-    
-    if(name == "" || age == "" || height == "") {
-        window.alert("값을 입력하세요");
-    } else {
-		const mem = new Member(name, age, height);
-        str += makeTr(mem);
+
+    // if(name == "" || age == "" || height == "") {
+    //     window.alert("값을 입력하세요");
+    // } else {
+    // 	const mem = new Member(name, age, height);
+    //     str += makeTr(mem);
+    // }
+
+    if (!name || !age || !height) {
+        alert("값을 입력하세요");
+        return;
     }
+    const mem = new Member(name, age, height);
+    str += makeTr(mem);
 
     function Member(name, age, height) {
-        
+
         this.name = name;
         this.age = age;
         this.height = height;
@@ -29,7 +36,7 @@ document.getElementById('saveBtn').onclick = function (e) {
         height,
         showInfo
     }) {
-        
+
         let html = '';
         html += '<tr>';
         html += '<td>' + member.name + '</td>';
@@ -40,7 +47,7 @@ document.getElementById('saveBtn').onclick = function (e) {
         html += '</tr>';
         return html;
     }
- 
+
     let list = document.getElementById('list');
     list.innerHTML += str;
 
