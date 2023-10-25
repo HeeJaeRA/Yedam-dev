@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>js/for.html</title>
+    <script>
+        console.log('javascript start');
+
+        for (let i = 0; i < 5; i++) {
+            console.log(i);
+        }
+
+        let numary = [1, 2, 3, 4, 5];
+        let arysum = 0;
+        console.log(typeof numary);
+        for (let i = 0; i < numary.length; i++) {
+            arysum += numary[i];
+        }
+        console.log(`배열 합계: ${arysum}`);
+
+        arysum = 0;
+        for (let val of numary) {
+            arysum += val;
+        }
+        console.log(`배열 합계: ${arysum}`);
+
+        arysum = 0;
+        numary.forEach(function(item, index, array) {
+            if (index <= 2){
+                arysum += item;
+            }
+            console.log(`배열요소: ${item}, 인덱스: ${index}, 배열: ${array}`);
+        })
+        console.log(`배열 합계: ${arysum}`);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
