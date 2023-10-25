@@ -10,8 +10,11 @@ const member = {
 
     makeTr(student = {sno, sname, engScore, mathScore}) {
         let str = "";
-        str += `<tr><td>${student.sno}</td><td>${student.sname}</td><td>${student.engScore}</td><td>${student.mathScore}</td></tr>`;
-
+        str += '<tr>';
+        for (let prop in student) {
+            str += '<td>' + student[prop] + '</td>';
+        }
+        str += '</tr>';
         return str;
     },
     makeHtml(stuAry = []) {
@@ -28,6 +31,12 @@ const member = {
         dom.innerHTML = this.html;
     }
 
+}
+
+for (let prop in member) {
+    if ((typeof member[prop]) != 'function') {
+        console.log(member[prop]);
+    }
 }
 
 const students = [

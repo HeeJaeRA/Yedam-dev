@@ -33,8 +33,11 @@ class Member {
     }
     makeTr(student={sno, sname, engScore, mathScore}) {
         let str = "";
-        str += `<tr><td>${student.sno}</td><td>${student.sname}</td><td>${student.engScore}</td><td>${student.mathScore}</td></tr>`;
-
+        str += '<tr>';
+        for (let prop in student) {
+            str += '<td>' + student[prop] + '</td>';
+        }
+        str += '</tr>';
         return str;
     }
     makeHtml(stuAry= []) {
@@ -57,7 +60,7 @@ class Member {
         table += `</tbody></table>`;
         this.html = table;
     }
-    
+
     showPage(dom) {
         dom.innerHTML = this.html;
     }
