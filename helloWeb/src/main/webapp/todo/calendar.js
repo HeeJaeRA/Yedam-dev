@@ -2,6 +2,8 @@ const yo = ['일요일', '월요일', '화요일', '수요일', '목요일', '�
 
 const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+document.getElementById('show').innerHTML = '';
+
 const calendar = {
 	html: '',
 
