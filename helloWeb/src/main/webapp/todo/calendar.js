@@ -27,9 +27,9 @@ const calendar = {
 		strBody += '<tbody><tr>'
 
 		for (let i = 1; i <= months[mon]; i++) {
-			strBody += `<td>${i}</td>`
+			strBody += `<td align = "right">${i}</td>`
 			if (i % 7 == 0) {
-				strBody += '<tr></tr>'
+				strBody += '</tr><tr>'
 			}
 		}
 		strBody += '</tr></tbody></table><br>'
