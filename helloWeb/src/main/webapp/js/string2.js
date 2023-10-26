@@ -7,7 +7,7 @@ word = words.split(' ');
 for (let i = 0; i < word.length; i++) {
     if (word[i].length > 5) {
         // console.log(word[i]);
-        str5size += word[i] + " ";
+        str5size += word[i] + " | ";
     }
 }
 console.log('크기 6이상: ', str5size);
@@ -23,15 +23,14 @@ function checkGender(ssn) {
         return '여자';
     }
 }
-
 console.log('성별: ', checkGender('950305 3678532'));
 
 // 파일명과 확장자
 let file = "d:/temp/sample/book.xls";
 let fileName, fileExt;
 
-fileExt = file.split('.', -1).reverse()[0];
-fileName = file.split('.', -1).reverse()[1].split('/', -1).reverse()[0];
+fileExt = file.split('.').reverse()[0];
+fileName = file.split('.').reverse()[1].split('/').reverse()[0];
 
 console.log('파일이름: ', fileName);
 console.log('확장자: ', fileExt);
