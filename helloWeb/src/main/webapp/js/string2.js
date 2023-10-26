@@ -10,11 +10,10 @@ for (let i = 0; i < word.length; i++) {
         str5size += word[i] + " | ";
     }
 }
-console.log('크기 6이상: ', str5size);
+console.log('크기 6 이상 단어: ', str5size);
 
 // 생년월일 입력 > 남자 여자
 function checkGender(ssn) {
-    //950305 3678532
     let strGen = ssn.replace(/\s/g, '');
 
     if (strGen.charAt(6) == '1' || strGen.charAt(6) == '3') {
