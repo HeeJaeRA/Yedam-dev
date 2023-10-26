@@ -5,7 +5,7 @@ today.setMonth(0);
 today.setDate(1);
 today.setHours(1);
 
-console.log(today.toString());
+// console.log(today.toString());
 
 function dateFormat(today) {
 
