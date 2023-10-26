@@ -29,7 +29,7 @@ let file = "d:/temp/sample/book.xls";
 let fileName, fileExt;
 
 fileExt = file.split('.').reverse()[0];
-fileName = file.split('.').reverse()[1].split('/').reverse()[0];
+fileName = file.split('.')[0].split('/').reverse()[0];
 
 console.log('파일이름: ', fileName);
 console.log('확장자: ', fileExt);
