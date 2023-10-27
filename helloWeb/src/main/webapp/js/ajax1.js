@@ -64,11 +64,22 @@ xhtp.onload = function () {
     let doc = xhtp.responseXML;
     let records = doc.getElementsByTagName('record');
     console.log(records);
-    console.log(records[0].children[0].innerHTML);
+
     let titles = ["회원번호", "비밀번호", "이름", "연락처"];
     let dataAry = [];
 
+    for (let record of records) {
+        let obj = {
+        mid: record.children[0].textContent, //mid
+        pass: record.children[1].textContent, //pass
+        name: record.children[2].textContent, //name
+        phone: record.children[3].textContent //phone
+        }
+        dataAry.push(obj);
+    }
     let result = table.makeTable(titles, dataAry);
 
     console.log(result);
+
+    document.getElementById('show').innerHTML = result;
 }
