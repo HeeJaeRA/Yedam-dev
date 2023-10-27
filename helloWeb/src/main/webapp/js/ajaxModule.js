@@ -11,7 +11,7 @@ const table = {
     },
 
     makeBody(dataAry = []) {
-        let bodyTag = "<tbody>";
+        let bodyTag = "<tbody id = 'list'>";
         dataAry.forEach(item => {
             bodyTag += "<tr>";
             for (let prop in item) {
