@@ -61,14 +61,14 @@ let newMember = { mid: "M009", pass: "9999", name: "민식이", phone: "010-9999
 let xhtp = new XMLHttpRequest();
 
 // XML 실행
-// xhtp.open('get', '../MemberListServ');
-// xhtp.send();
-// xhtp.onload = loadXML; 
+xhtp.open('get', '../MemberListServ');
+xhtp.send();
+xhtp.onload = loadXML; 
 
 // JSON 실행
-xhtp.open('get', '../MemberListServ2');
-xhtp.send();
-xhtp.onload = loadJSON;
+// xhtp.open('get', '../MemberListServ2');
+// xhtp.send();
+// xhtp.onload = loadJSON;
 
 function loadXML() {
     console.log(xhtp.responseXML);
