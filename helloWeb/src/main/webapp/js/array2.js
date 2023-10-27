@@ -35,3 +35,8 @@ inpMem = {name: inpMem.split(',')[0], email: inpMem.split(',')[1]};
 members.push({id: (members[members.length - 1].id + 1), first_name: inpMem.name, email: inpMem.email});
 
 console.log(members);
+
+const dupAry = [["라이언", 5], ["어피치", 3], ["콘", 2], ["무지", 4]]
+
+console.log(dupAry);
+console.table(dupAry); //table 형식 출력
