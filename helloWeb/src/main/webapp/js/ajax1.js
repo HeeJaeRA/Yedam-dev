@@ -56,10 +56,14 @@ console.log(friendsA);
 // COMMIT;
 // SELECT * FROM mem;
 
+let newMember = { mid: "M009", pass: "9999", name: "민식이", phone: "010-9999-9999" };
+
 let xhtp = new XMLHttpRequest();
-xhtp.open('get', '../MemberListServ');
+xhtp.open('get', '../MemberListServ2');
 xhtp.send();
-xhtp.onload = function () {
+xhtp.onload = loadJSON;
+
+function loadXML() {
     // console.log(xhtp.responseXML);
     let doc = xhtp.responseXML;
     let records = doc.getElementsByTagName('record');
@@ -77,9 +81,18 @@ xhtp.onload = function () {
         }
         dataAry.push(obj);
     }
+    // dataAry.push(newMember);
     let result = table.makeTable(titles, dataAry);
 
     console.log(result);
 
     document.getElementById('show').innerHTML = result;
+
+    let tr = '<tr><td>' + newMember.mid + '</td><td>' + newMember.pass + '</td><td>' + newMember.name + '</td><td>' + newMember.phone +'</td></tr>';
+
+    document.getElementById('list').innerHTML += tr;
+}
+
+function loadJSON() {
+    console.log(xhtp.responseText);
 }
