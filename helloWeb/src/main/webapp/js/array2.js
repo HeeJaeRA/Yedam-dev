@@ -32,6 +32,6 @@ let inpMem = inpVal.replace(/\s/g, '');
 
 inpMem = {name: inpMem.split(',')[0], email: inpMem.split(',')[1]};
 
-members.push({id: members.length + 1, first_name: inpMem.name, email: inpMem.email});
+members.push({id: (members[members.length - 1].id + 1), first_name: inpMem.name, email: inpMem.email});
 
 console.log(members);
