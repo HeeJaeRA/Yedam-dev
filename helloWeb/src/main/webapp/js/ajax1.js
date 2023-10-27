@@ -59,12 +59,19 @@ console.log(friendsA);
 let newMember = { mid: "M009", pass: "9999", name: "민식이", phone: "010-9999-9999" };
 
 let xhtp = new XMLHttpRequest();
+
+// XML 실행
+// xhtp.open('get', '../MemberListServ');
+// xhtp.send();
+// xhtp.onload = loadXML; 
+
+// JSON 실행
 xhtp.open('get', '../MemberListServ2');
 xhtp.send();
 xhtp.onload = loadJSON;
 
 function loadXML() {
-    // console.log(xhtp.responseXML);
+    console.log(xhtp.responseXML);
     let doc = xhtp.responseXML;
     let records = doc.getElementsByTagName('record');
     console.log(records);
@@ -95,4 +102,14 @@ function loadXML() {
 
 function loadJSON() {
     console.log(xhtp.responseText);
+
+    let result = JSON.parse(xhtp.responseText);
+
+    console.log(result);
+
+    let titles = ["회원번호", "비밀번호", "이름", "연락처"];
+
+    let tb = table.makeTable(titles, result);
+
+    document.getElementById('show').innerHTML = tb;
 }
