@@ -34,12 +34,6 @@ console.log(friendsA);
 //     }, 500);
 // }, 1000);
 
-
-// XML
-//http://localhost:8080/helloWeb/js/ajax.html
-//http://localhost:8080/helloWeb/MemberListServ
-
-
 // DB 
 // CREATE TABLE MEM (
 //     mid     varchar2(10)    PRIMARY KEY,
@@ -61,14 +55,14 @@ let newMember = { mid: "M009", pass: "9999", name: "민식이", phone: "010-9999
 let xhtp = new XMLHttpRequest();
 
 // XML 실행
-xhtp.open('get', '../MemberListServ');
-xhtp.send();
-xhtp.onload = loadXML; 
+// xhtp.open('get', '../MemberListServ');
+// xhtp.send();
+// xhtp.onload = loadXML; 
 
 // JSON 실행
-// xhtp.open('get', '../MemberListServ2');
-// xhtp.send();
-// xhtp.onload = loadJSON;
+xhtp.open('get', '../MemberListServ2');
+xhtp.send();
+xhtp.onload = loadJSON;
 
 function loadXML() {
     console.log(xhtp.responseXML);
@@ -101,11 +95,11 @@ function loadXML() {
 }
 
 function loadJSON() {
-    console.log(xhtp.responseText);
+    // console.log(xhtp.responseText);
 
     let result = JSON.parse(xhtp.responseText);
 
-    console.log(result);
+    // console.log(result);
 
     let titles = ["회원번호", "비밀번호", "이름", "연락처"];
 
