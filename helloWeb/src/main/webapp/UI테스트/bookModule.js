@@ -2,7 +2,7 @@ const table = {
 
     makeHead(titleAray = ['도서코드', '도서명', '저자', '출판사', '가격', '삭제']) {
         let headTag = "<thead><tr>";
-        headTag += "<th><input type='checkbox'></th>"
+        headTag += "<th><input type='checkbox' name='ckbox' onclick='selectAll(this)'></th>"
 
         titleAray.forEach(title => {
             headTag += "<th>" + title + "</th>";
@@ -13,7 +13,7 @@ const table = {
     
     makeTr(member = {}) {
         let trTag = "<tr>";
-        trTag += "<td><input type='checkbox'></td>"
+        trTag += "<td><input type='checkbox' name='ckbox'></td>"
         for (let prop in member) {
             trTag += "<td>" + member[prop] + "</td>";
         }

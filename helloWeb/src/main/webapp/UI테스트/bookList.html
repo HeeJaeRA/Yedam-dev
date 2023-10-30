@@ -9,6 +9,16 @@
 <body>
     <div id="show"></div>
     <script type="module" src="book.js"></script>
+
+    <!-- // 체크박스 전체 선택,선택 해제 기능 -->
+    <script>
+        function selectAll(selectAll) {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked
+            })
+        }
+    </script>
 </body>
 
 </html>
