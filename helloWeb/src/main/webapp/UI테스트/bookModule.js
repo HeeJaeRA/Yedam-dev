@@ -17,7 +17,7 @@ const table = {
         for (let prop in member) {
             trTag += "<td>" + member[prop] + "</td>";
         }
-        trTag += "<td><button>삭제</button></td>";
+        trTag += "<td><button onclick = 'this.parentElement.parentElement.remove()'>삭제</button></td>";
         trTag += "</tr>";
         return trTag;
     },
