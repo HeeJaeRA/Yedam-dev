@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test1.html</title>
+</head>
+<body>
+    <script>
+        let data = ``;
+        
+        let xhtp = new XMLHttpRequest();
+        xhtp.open('get', 'data.json');
+        xhtp.send();
+        xhtp.onload = function () {
+            let result = JSON.parse(xhtp.responseText);
+
+            let targetAry = [];
+
+            result.forEach(ele => {
+                targetAry.push({id: ele.id, first_name: ele.first_name,last_name: ele.last_name, email: ele.email, gender: ele.gender, salary: ele.salary})
+            });
+
+            console.log(targetAry);
+
+            for(target of targetAry) {
+                if(target.gender == 'Female' && target.salary > 4500) {
+                    console.log(target);
+                }
+            }
+		}
+
+    </script>
+	
+</body>
+</html>
