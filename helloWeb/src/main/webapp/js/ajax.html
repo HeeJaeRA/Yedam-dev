@@ -7,8 +7,47 @@
 </head>
 
 <body>
+	<table border="1">
+		<tr>
+			<th>아이디</th><td><input id="mid"></td>
+		</tr>
+		<tr>
+			<th>비밀번호</th><td><input type="password" id="pass"></td>
+		</tr>
+		<tr>
+			<th>이름</th><td><input id="name"></td>
+		</tr>
+		<tr>
+			<th>연락처</th><td><input id="phone"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button id="addBtn">등록</button>
+				<button id="modBtn">수정</button>
+			</td>
+		</tr>
+	</table>
+	<br><hr><br>
 	<div id="show"></div>
+	<script>
+		function showInfo(e, obj) {
+			// console.log(e.target.parentElement); 	// e.target: td
+			// console.log(obj); 						// this: tr
+			// console.log(obj.children);
+
+			let mid = obj.children[0].innerHTML;
+			let pass = obj.children[1].innerHTML;
+			let name = obj.children[2].innerHTML;
+			let phone = obj.children[3].innerHTML;
+
+			document.getElementById('mid').value = mid;
+			document.getElementById('pass').value = pass;
+			document.getElementById('name').value = name;
+			document.getElementById('phone').value = phone;
+		}
+	</script>
 	<script type="module" src="ajax1.js"></script>
+	<script type="module" src="ajax2.js"></script>
 </body>
 
 </html>

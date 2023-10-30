@@ -31,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> memberList() {
 		List<MemberVO> members = new ArrayList<>();
 		MemberVO vo;
-		String sql = "SELECT * FROM MEM";		
+		String sql = "SELECT * FROM MEM ORDER BY MID";		
 		try {
 			conn = dataSource.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -51,5 +51,51 @@ public class MemberServiceImpl implements MemberService {
 			close();
 		}
 		return members;
+	}
+	
+	@Override
+	public boolean addMember(MemberVO vo) {
+		String sql = "INSERT INTO MEM VALUES(?, ?, ?, ?)";
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getMid());
+			psmt.setString(2, vo.getPass());
+			psmt.setString(3, vo.getName());
+			psmt.setString(4, vo.getPhone());
+			
+			int r = psmt.executeUpdate();
+			if (r == 1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean modifyMember(MemberVO vo) {
+		String sql = "UPDATE MEM SET PASS = ?, NAME = ?, PHONE = ? WHERE MID = ?";
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getPass());
+			psmt.setString(2, vo.getName());
+			psmt.setString(3, vo.getPhone());
+			psmt.setString(4, vo.getMid());
+			
+			int r = psmt.executeUpdate();
+			if (r == 1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return false;
 	}
 }

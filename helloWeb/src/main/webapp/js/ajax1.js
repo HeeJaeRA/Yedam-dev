@@ -95,13 +95,17 @@ function loadXML() {
 }
 
 function loadJSON() {
-    // console.log(xhtp.responseText);
-
+    console.log(xhtp.responseText);
     let result = JSON.parse(xhtp.responseText);
-
-    // console.log(result);
+    console.log(result);
 
     let titles = ["회원번호", "비밀번호", "이름", "연락처"];
+
+    // let dataAry = [];
+
+    // result.array.forEach(member => {
+    //     dataAry.push({mid: member.mid, pass: member.pass, name: member.name, phone: member.phone})
+    // });
 
     let tb = table.makeTable(titles, result);
 

@@ -41,9 +41,10 @@ public class MemberListServ2 extends HttpServlet {
 		System.out.println("JSON DATA");
 
 		response.setContentType("text/json; charset=UTF-8");
-		// [ {"mid":value, "pass":values, "name":values, "phone":values} ]
 
 		PrintWriter out = response.getWriter();
+		// [ {"mid":value, "pass":values, "name":values, "phone":values} ]
+		
 		String str = "";
 
 		str += "[";
