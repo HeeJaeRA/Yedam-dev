@@ -12,7 +12,7 @@ fetch(url)
 function fetchCallback(result) {
     // console.log(result);
     let rawData = result.data;
-    console.log(rawData);
+    // console.log(rawData);
 
     let sidoAry = [];
     rawData.forEach(center => {
@@ -65,17 +65,17 @@ function genTable(rawData = [], page = 1) {
     document.querySelector('#show').innerHTML = '';
 
     let thead = table.makeHead(titles);
-    let mapData = rawData.map(center => {
-        let newCenter = {
-            id: center.id,
-            centerName: center.centerName.replace('코로나19 ', ''),
-            org: center.org,
-            phoneNumber: center.phoneNumber,
-            lat: center.lat,
-            lng: center.lng
-        }
-        return newCenter;
-    });
+    // let mapData = rawData.map(center => {
+    //     let newCenter = {
+    //         id: center.id,
+    //         centerName: center.centerName.replace('코로나19 ', ''),
+    //         org: center.org,
+    //         phoneNumber: center.phoneNumber,
+    //         lat: center.lat,
+    //         lng: center.lng
+    //     }
+    //     return newCenter;
+    // });
     let mapData1 = rawData.reduce((acc, item) => {
         let newnewCenter = {
             id : item.id,
@@ -87,10 +87,10 @@ function genTable(rawData = [], page = 1) {
         }
         acc.push(newnewCenter);
         return acc;
-    }, 0);
+    }, []);
     console.log(mapData1);
 
-    let tbody = table.makeBody(mapData);
+    let tbody = table.makeBody(mapData1);
 
     let tb1 = document.createElement('table');
     tb1.setAttribute('border', '1');
