@@ -2,7 +2,7 @@ import table from './domTable.js';
 
 let url = 'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&serviceKey=xzADYrvAUisAVDob8yaz4gaeTvaJVrxJG5M93Ihkj5IDQgqmpN%2FejAdm26cz1BsmATLApRLmj7HWYVfgqvwnKw%3D%3D';
 
-let titles = ['ID', '센터명', '병원명', '연락처'];
+let titles = ['ID', '센터명', '병원명', '연락처', '위도', '경도'];
 
 fetch(url)
     .then(resovle => resovle.json())
@@ -46,20 +46,21 @@ function fetchCallback(result) {
     })
 
     sidoSel.addEventListener('change', changeCallback);
+
     function changeCallback(e) {
         // console.log(e.target.value);
         let searchSido = e.target.value;
         let filterAry = rawData.filter(center => center.sido == searchSido);
         // console.log(filterAry);
-        genTable(filterAry);        // 선택한 데이터로 출력
+        genTable(filterAry); // 선택한 데이터로 출력
     }
-    // genTable(rawData);          // 초기 데이터로 전체 출력
+    genTable(rawData); // 초기 데이터로 전체 출력
 
-    let filterAry = rawData.filter((center, idx) => idx < 30); // 30건만 출력
-    genTable(filterAry);
+    // let filterAry = rawData.filter((center, idx) => idx < 30); // 30건만 출력
+    // genTable(filterAry);
 }
 
-function genTable(rawData = []) {
+function genTable(rawData = [], page = 1) {
     //화면 초기화
     document.querySelector('#show').innerHTML = '';
 
@@ -69,10 +70,26 @@ function genTable(rawData = []) {
             id: center.id,
             centerName: center.centerName.replace('코로나19 ', ''),
             org: center.org,
-            phoneNumber: center.phoneNumber
+            phoneNumber: center.phoneNumber,
+            lat: center.lat,
+            lng: center.lng
         }
         return newCenter;
     });
+    let mapData1 = rawData.reduce((acc, item) => {
+        let newnewCenter = {
+            id : item.id,
+            centerName: item.centerName.replace('코로나19 ', ''),
+            org: item.org,
+            phoneNumber: item.phoneNumber,
+            lat: item.lat,
+            lng: item.lng
+        }
+        acc.push(newnewCenter);
+        return acc;
+    }, 0);
+    console.log(mapData1);
+
     let tbody = table.makeBody(mapData);
 
     let tb1 = document.createElement('table');
@@ -80,4 +97,20 @@ function genTable(rawData = []) {
     tb1.append(thead, tbody);
 
     document.getElementById('show').append(tb1);
+
+    // onclick 이벤트
+    let targetTr = document.querySelectorAll('tbody tr');
+
+    targetTr.forEach(tr => {
+        tr.addEventListener('click', clickCallback);
+
+        function clickCallback(e) {
+            // console.log(tr.children[4].innerHTML, tr.children[5].innerHTML);
+            let lat = tr.children[4].innerHTML;
+            let lng = tr.children[5].innerHTML;
+            // location.href = 'kakaoApi.html?x=' + lat + '&y=' + lng;
+            window.open('kakaoApi.html?x=' + lat + '&y=' + lng);
+        }
+    })
+
 }
