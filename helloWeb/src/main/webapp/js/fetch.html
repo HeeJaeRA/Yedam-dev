@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>js/fetch.html</title>
+	<script type="module" src="fetch1.js"></script>
+</head>
+
+<body>
+	<div id="show"></div>
+	<script>
+		// Promise 객체 - fullfilled(처리 완료), pending(처리 중), rejected(거부)
+		const promise = new Promise(function (resolve) {
+			setTimeout(function () {
+				console.log('실행.');
+				resolve('Success');
+			}, 500);
+		});
+
+		// fullfilled
+		promise.then((resolve) => {
+			console.log('then: ', resolve);
+			return 'OK';
+		})
+			.then((result) => {
+				console.log('then2: ', result);
+				//return message;
+			})
+			.catch((err) => {
+				console.log('error: ', err);
+			})
+	</script>
+</body>
+
+</html>
