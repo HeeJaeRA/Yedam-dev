@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 
 public class StudentVO {
-	private String StudentId;
-	private String StudentName;
-	private String StudentPassword;
-	private String StudentDept;
-	private Date StudentBirthday;
+	private String studentId;
+	private String studentName;
+	private String studentPassword;
+	private String studentDept;
+	private Date studentBirthday;
 }
