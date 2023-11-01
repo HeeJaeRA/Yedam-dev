@@ -1,5 +1,7 @@
 export default {
 
+    hiddenFields: ['lat', 'lng'],
+
     makeHead: function(titles = []) {
         let thead = document.createElement('thead');
         let tr = document.createElement('tr');
@@ -22,7 +24,15 @@ export default {
 
     makeTr: function(center = {}) {
         let tr = document.createElement('tr');
+
+        // tr.dataset.lat, tr.dataset.lng
+        tr.setAttribute('data-lat', center.lat);
+        tr.setAttribute('data-lng', center.lng);
+
         for (let prop in center) {
+            if (this.hiddenFields.indexOf(prop) > -1) {
+                continue;
+            }
             let td = document.createElement('td');
             td.innerHTML = center[prop];
             tr.append(td);
