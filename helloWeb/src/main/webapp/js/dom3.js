@@ -55,7 +55,7 @@ function fetchCallback(result) {
         genTable(filterAry); // 선택한 데이터로 출력
     }
     // 초기 데이터로 전체 출력 + page 단위로 출력
-    genTable(rawData); 
+    genTable(rawData);
 
     // let filterAry = rawData.filter((center, idx) => idx < 30); // 30건만 출력
     // genTable(filterAry);
@@ -70,7 +70,7 @@ function genTable(rawData = [], page = 1) {
     let endNo = page * 5;
     let totalCnt = rawData.length;
     let lastPage = Math.ceil(totalCnt / 5);
-    
+
     // 페이지 번호
     let endPage = Math.ceil(page / 5) * 5;
     let beginPage = endPage - 4;
@@ -95,6 +95,7 @@ function genTable(rawData = [], page = 1) {
         aTag.setAttribute('href', '#');
         aTag.innerHTML = '&laquo;';
         aTag.addEventListener('click', clickCallback);
+
         function clickCallback(e) {
             genTable(rawData, beginPage - 1);
         }
@@ -111,6 +112,7 @@ function genTable(rawData = [], page = 1) {
         }
 
         aTag.addEventListener('click', clickCallback);
+
         function clickCallback(e) {
             genTable(rawData, i);
         }
@@ -123,6 +125,7 @@ function genTable(rawData = [], page = 1) {
         aTag.setAttribute('href', '#');
         aTag.innerHTML = '&raquo;';
         aTag.addEventListener('click', clickCallback);
+
         function clickCallback(e) {
             genTable(rawData, endPage + 1);
         }
@@ -144,7 +147,7 @@ function genTable(rawData = [], page = 1) {
     let mapData = rawData.reduce((acc, center, idx) => {
         if (idx >= startNo && idx < endNo) {
             let newCenter = {
-                id : center.id,
+                id: center.id,
                 centerName: center.centerName.replace('코로나19 ', ''),
                 sido: center.sido,
                 phoneNumber: center.phoneNumber,
