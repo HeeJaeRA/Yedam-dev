@@ -6,30 +6,36 @@ import co.yedam.student.service.StudentService;
 import co.yedam.student.service.StudentVO;
 
 public class StudentServiceImpl implements StudentService{
-
+	StudentDAO dao = new StudentDAO();
+	
 	@Override
 	public boolean addStudent(StudentVO vo) {
-		return false;
+		dao.insert(vo);
+		return true;
 	}
 
 	@Override
 	public boolean editStudent(StudentVO vo) {
-		return false;
+		dao.update(vo);
+		return true;
 	}
 
 	@Override
 	public boolean removeStudent(String sid) {
-		return false;
+		dao.delete(sid);
+		return true;
 	}
 
 	@Override
 	public List<StudentVO> listStudent() {
-		return null;
+		List<StudentVO> list = dao.list();
+		return list;
 	}
 
 	@Override
 	public StudentVO getStudent(String sid) {
-		return null;
+		StudentVO vo = dao.select(sid);
+		return vo;
 	}
 
 }
