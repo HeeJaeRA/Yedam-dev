@@ -71,9 +71,19 @@ function genTable(rawData = [], page = 1) {
     let totalCnt = rawData.length;
     let lastPage = Math.ceil(totalCnt / 5);
 
+    // 페이지 그룹
+    // let pagegroup = 5;
+
     // 페이지 번호
-    let endPage = Math.ceil(page / 5) * 5;
-    let beginPage = endPage - 4;
+    let beginPage;
+    if (page > 3) {
+        beginPage = page - 2;
+        // beginPage = page - Math.ceil(pagegroup / 3);
+    } else {
+        beginPage = 1;
+    }
+    let endPage = beginPage + 4;
+    // let endPage = beginPage + (pagegroup - 1);
 
     let prev, next = false;
     if (beginPage > 1) {
@@ -103,16 +113,17 @@ function genTable(rawData = [], page = 1) {
     }
     //전체 페이지
     for (let i = beginPage; i <= endPage; i++) {
-        let aTag = document.createElement('a');
 
+        let aTag = document.createElement('a');
         aTag.setAttribute('href', '#');
         aTag.innerHTML = i;
+
         if (i == page) {
             aTag.setAttribute('class', 'active');
         }
 
         aTag.addEventListener('click', clickCallback);
-
+        
         function clickCallback(e) {
             genTable(rawData, i);
         }
