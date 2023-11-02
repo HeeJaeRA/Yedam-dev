@@ -9,9 +9,13 @@ fetch('../studentList.do')
         })
     })
     .catch(err => console.log('error: ', err));
-
+// 등록 버튼 이벤트
 document.querySelector('#addBtn').addEventListener('click', addcallback)
 
+// 수정 버튼 이벤트
+document.querySelector('#modBtn').addEventListener('click', modcallback)
+
+// 등록 버튼 콜백함수
 function addcallback(e) {
     // let sid = document.querySelector('input[name=sid]').value;
     let sid = document.querySelector('#sid').value;
@@ -52,6 +56,36 @@ function addcallback(e) {
         .catch(err => console.log('error: ', err));
 }
 
+// 수정 버튼 콜백함수
+function modcallback(e) {
+    // let sid = document.querySelector('input[name=sid]').value;
+    let sid = document.querySelector('.modal-body input[name=id]').value;
+    let sname = document.querySelector('.modal-body input[name=name]').value;
+    let spw = document.querySelector('.modal-body input[name=pass]').value;
+    let sbirthday = document.querySelector('.modal-body input[name=birth]').value;
+
+    let param = `id=${sid}&name=${sname}&pw=${spw}&birthday=${sbirthday}`;
+
+    fetch('../studentMod.do?', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: param
+        })
+        .then(resolve => resolve.json())
+        .then(result => {
+            if (result.retCode == 'OK') {
+                alert('수정 완료');
+                console.log(this);
+            } else {
+                alert('수정 실패');
+            }
+        })
+        .catch(err => console.log('error: ', err));
+}
+
+// 테이블 생성 함수
 function makeTr(obj) {
     let showFields = ['studentId', 'studentName', 'studentDept', 'studentBirthday'];
     let tr = document.createElement('tr');
@@ -116,12 +150,12 @@ function showModal(e) {
         // console.log(result);
         // alert(result.studentName + ' 정보수정');
 
-        let data = {id: result.studentId, name: result.studentName, pass: result.studentPassword, dept: result.studentDept, birth: result.studentBirthday};
-    
-        modal.querySelector('h2').innerHTML = data.name;
-        modal.querySelector('input[name=pass]').value = data.pass;
-        modal.querySelector('input[name=dept]').value = data.dept;
-        modal.querySelector('input[name=birth]').value = data.birth;
+        modal.querySelector('h2').innerHTML = result.studentName;
+        modal.querySelector('input[name=id]').value = result.studentId;
+        modal.querySelector('input[name=name]').value = result.studentName;
+        modal.querySelector('input[name=pass]').value = result.studentPassword;
+        // modal.querySelector('input[name=dept]').value = result.studentDept;
+        modal.querySelector('input[name=birth]').value = result.studentBirthday;
     })
     .catch(err => console.log('error: ', err));
 
