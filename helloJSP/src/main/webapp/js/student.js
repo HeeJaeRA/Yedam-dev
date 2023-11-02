@@ -64,7 +64,7 @@ function modcallback(e) {
     let spw = document.querySelector('.modal-body input[name=pass]').value;
     let sbirthday = document.querySelector('.modal-body input[name=birth]').value;
 
-    let param = `id=${sid}&name=${sname}&pw=${spw}&birthday=${sbirthday}`;
+    let param = `id=${sid}&name=${sname}&pw=${spw}&dept=${sdept}&birthday=${sbirthday}`;
 
     fetch('../studentMod.do?', {
             method: 'post',
@@ -77,7 +77,11 @@ function modcallback(e) {
         .then(result => {
             if (result.retCode == 'OK') {
                 alert('수정 완료');
-                console.log(this);
+                let targetTr = document.querySelector('tr[data-sid=' + result.vo.studentId + ']');
+                let newTr = makeTr(result.vo);
+                let parentEle = document.querySelector('#list');
+                parentEle.replaceChild(newTr, targetTr);
+                document.getElementById("myModal").style.display = 'none';
             } else {
                 alert('수정 실패');
             }
@@ -87,9 +91,10 @@ function modcallback(e) {
 
 // 테이블 생성 함수
 function makeTr(obj) {
-    let showFields = ['studentId', 'studentName', 'studentDept', 'studentBirthday'];
+    let showFields = ['studentId', 'studentName', 'studentBirthday'];
     let tr = document.createElement('tr');
-    // tr.setAttribute('data-sid', obj.studentId)
+    tr.setAttribute('data-sid', obj.studentId)
+
     tr.addEventListener('dblclick', showModal)
 
     for (let prop of showFields) {
@@ -130,7 +135,7 @@ function makeTr(obj) {
 function showModal(e) {
     // console.log(e.target.parentElement, this)
     let id = this.children[0].innerHTML;
-    // let id = this.datset.sid; --> makeTr(obj) { tr.setAttribute('data-sid', obj.studentId) }
+    // let id = this.datset.sid; 
     // console.log(id);
 
     // Get the modal
@@ -147,7 +152,7 @@ function showModal(e) {
     })
     .then(resolve => resolve.json())
     .then(result => {
-        // console.log(result);
+        console.log(result);
         // alert(result.studentName + ' 정보수정');
 
         modal.querySelector('h2').innerHTML = result.studentName;
