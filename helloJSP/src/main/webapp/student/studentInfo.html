@@ -69,6 +69,7 @@
 				<tr>
 					<th>아이디</th>
 					<th>이름</th>
+					<th>학과</th>
 					<th>생년월일</th>
 					<th>삭제</th>
 				</tr>
@@ -101,11 +102,24 @@
 			let sbirth = document.querySelector('#sbirth').value;
 
 			let param = `id=${sid}&name=${sname}&pw=${spw}&dept=${sdept}&birthday=${sbirth}`;
-			console.log(param);
+			// console.log(param);
+
+			fetch('../studentAdd.do?' + param)
+				.then(resolve => resolve.json())
+				.then(result => {
+					if (result.retCode == 'OK') {
+						alert('추가 완료');
+						let tr = makeTr({studentId: sid, studentName: sname, studentDept: sdept, studentBirthday: sbirth});
+						document.querySelector('#list').append(tr);
+					} else {
+						alert('추가 실패');
+					}
+				})
+				.catch(err => console.log('error: ', err));
 		}
 
 		function makeTr(obj) {
-			let showFields = ['studentId', 'studentName', 'studentBirthday'];
+			let showFields = ['studentId', 'studentName', 'studentDept', 'studentBirthday'];
 			let tr = document.createElement('tr');
 
 			for (let prop of showFields) {

@@ -10,20 +10,17 @@ public class StudentServiceImpl implements StudentService{
 	
 	@Override
 	public boolean addStudent(StudentVO vo) {
-		dao.insert(vo);
-		return true;
+		return (dao.insert(vo) == 1);
 	}
 
 	@Override
 	public boolean editStudent(StudentVO vo) {
-		dao.update(vo);
-		return true;
+		return (dao.update(vo) == 1);
 	}
 
 	@Override
 	public boolean removeStudent(String sid) {
-		dao.delete(sid);
-		return true;
+		return (dao.delete(sid) == 1);
 	}
 
 	@Override
