@@ -7,8 +7,64 @@
 </head>
 
 <body>
+	<h3>학생 정보 입력</h3>
+	<table border="1">
+		<tbody>
+			<tr>
+				<td>
+					<label for="sid">아이디</label>
+				</td>
+				<td>
+					<input type="text" id="sid" name="sid">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="sname">이름</label>
+				</td>
+				<td>
+					<input type="text" id="sname" name="sname">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="spw">비밀번호</label>
+				</td>
+				<td>
+					<input type="password" id="spw" name="spw">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="sdept">학과</label>
+				</td>
+				<td>
+					<select id="sdept">
+						<option disabled selected>선택하세요</option>
+						<option value="경영학과">경영학과</option>
+						<option value="컴퓨터공학과">컴퓨터공학과</option>
+						<option value="서양화과">서양화과</option>
+						<option value="영문학과">영문학과</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="sbirth">생년월일</label>
+				</td>
+				<td>
+					<input type="date" id="sbirth" name="sbirth">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="등록" id="addBtn"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<hr><br>
 	<div id="show">
-		<table border="1">
+		<table border="1px">
 			<thead>
 				<tr>
 					<th>아이디</th>
@@ -34,6 +90,20 @@
 			})
 			.catch(err => console.log('error: ', err));
 
+		document.querySelector('#addBtn').addEventListener('click', addcallback)
+
+		function addcallback(e) {
+			// let sid = document.querySelector('input[name=sid]').value;
+			let sid = document.querySelector('#sid').value;
+			let sname = document.querySelector('#sname').value;
+			let spw = document.querySelector('#spw').value;
+			let sdept = document.querySelector('#sdept').value;
+			let sbirth = document.querySelector('#sbirth').value;
+
+			let param = `id=${sid}&name=${sname}&pw=${spw}&dept=${sdept}&birthday=${sbirth}`;
+			console.log(param);
+		}
+
 		function makeTr(obj) {
 			let showFields = ['studentId', 'studentName', 'studentBirthday'];
 			let tr = document.createElement('tr');
@@ -43,32 +113,33 @@
 				td.innerHTML = obj[prop];
 				tr.append(td);
 			}
-			
+
 			let td = document.createElement('td');
 			let btn = document.createElement('button');
 			btn.setAttribute('data-sid', obj.studentId);
 			btn.innerHTML = '삭제';
-			
-			btn.addEventListener('click', callbackClick)
-			function callbackClick(e) {
+
+			btn.addEventListener('click', delcallback)
+
+			function delcallback(e) {
 				// ajax 호출(서블릿 실행)
 				fetch('../studentDel.do?sid=' + obj.studentId)
-				.then(resolve => resolve.json())
-				.then(result => {
-					console.log(result);
-					if (result.retCode == 'OK') {
-						alert('삭제 완료');
-						tr.remove();
-					} else {
-						alert('삭제 실패');
-					}
-				})
-				.catch(err => console.log('error: ', err));
+					.then(resolve => resolve.json())
+					.then(result => {
+						console.log(result);
+						if (result.retCode == 'OK') {
+							alert('삭제 완료');
+							tr.remove();
+						} else {
+							alert('삭제 실패');
+						}
+					})
+					.catch(err => console.log('error: ', err));
 			}
-			
+
 			td.append(btn);
 			tr.append(td);
-			
+
 			return tr;
 		}
 	</script>
