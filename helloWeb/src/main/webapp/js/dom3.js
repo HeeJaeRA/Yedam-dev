@@ -71,19 +71,14 @@ function genTable(rawData = [], page = 1) {
     let totalCnt = rawData.length;
     let lastPage = Math.ceil(totalCnt / 5);
 
-    // 페이지 그룹
-    // let pagegroup = 5;
-
     // 페이지 번호
     let beginPage;
     if (page > 3) {
         beginPage = page - 2;
-        // beginPage = page - Math.ceil(pagegroup / 3);
     } else {
         beginPage = 1;
     }
     let endPage = beginPage + 4;
-    // let endPage = beginPage + (pagegroup - 1);
 
     let prev, next = false;
     if (beginPage > 1) {
