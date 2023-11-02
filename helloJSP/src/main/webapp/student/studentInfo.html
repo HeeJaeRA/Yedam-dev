@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>student/studentInfo.html</title>
+	<link rel="stylesheet" href="../css/studentStyle.css">
 </head>
 
 <body>
@@ -78,85 +79,26 @@
 			</tbody>
 		</table>
 	</div>
-	<script>
-		fetch('../studentList.do')
-			.then(resolve => resolve.json())
-			.then(result => {
-				//console.log(result);
-
-				let tbody = document.querySelector('#list');
-				result.forEach(student => {
-					tbody.append(makeTr(student));
-				})
-			})
-			.catch(err => console.log('error: ', err));
-
-		document.querySelector('#addBtn').addEventListener('click', addcallback)
-
-		function addcallback(e) {
-			// let sid = document.querySelector('input[name=sid]').value;
-			let sid = document.querySelector('#sid').value;
-			let sname = document.querySelector('#sname').value;
-			let spw = document.querySelector('#spw').value;
-			let sdept = document.querySelector('#sdept').value;
-			let sbirth = document.querySelector('#sbirth').value;
-
-			let param = `id=${sid}&name=${sname}&pw=${spw}&dept=${sdept}&birthday=${sbirth}`;
-			// console.log(param);
-
-			fetch('../studentAdd.do?' + param)
-				.then(resolve => resolve.json())
-				.then(result => {
-					if (result.retCode == 'OK') {
-						alert('추가 완료');
-						let tr = makeTr({studentId: sid, studentName: sname, studentDept: sdept, studentBirthday: sbirth});
-						document.querySelector('#list').append(tr);
-					} else {
-						alert('추가 실패');
-					}
-				})
-				.catch(err => console.log('error: ', err));
-		}
-
-		function makeTr(obj) {
-			let showFields = ['studentId', 'studentName', 'studentDept', 'studentBirthday'];
-			let tr = document.createElement('tr');
-
-			for (let prop of showFields) {
-				let td = document.createElement('td');
-				td.innerHTML = obj[prop];
-				tr.append(td);
-			}
-
-			let td = document.createElement('td');
-			let btn = document.createElement('button');
-			btn.setAttribute('data-sid', obj.studentId);
-			btn.innerHTML = '삭제';
-
-			btn.addEventListener('click', delcallback)
-
-			function delcallback(e) {
-				// ajax 호출(서블릿 실행)
-				fetch('../studentDel.do?sid=' + obj.studentId)
-					.then(resolve => resolve.json())
-					.then(result => {
-						console.log(result);
-						if (result.retCode == 'OK') {
-							alert('삭제 완료');
-							tr.remove();
-						} else {
-							alert('삭제 실패');
-						}
-					})
-					.catch(err => console.log('error: ', err));
-			}
-
-			td.append(btn);
-			tr.append(td);
-
-			return tr;
-		}
-	</script>
+	<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 -->
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close">&times;</span>
+				<h2>Modal Header</h2>
+			</div>
+			<div class="modal-body">
+				<p>비밀번호&nbsp;<input type="text" name="pass"></p>
+				<p>학과&nbsp;<input type="text" name="dept"></p>
+				<p>생년월일&nbsp;<input type="date" name="birth"></p>
+			</div>
+			<div class="modal-footer">
+				<button id="modBtn">수정</button>
+			</div>
+		</div>
+	</div>
+	<script src="../js/student.js"></script>
 </body>
 
 </html>

@@ -20,6 +20,11 @@ public class AddStudentServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		// post 방식 한글처리
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/json; charset=UTF-8");
+		
 		StudentVO vo = new StudentVO();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");		
 		
