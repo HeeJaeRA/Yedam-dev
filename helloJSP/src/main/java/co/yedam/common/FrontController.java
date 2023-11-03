@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.board.web.BoardListControl;
+import co.yedam.board.web.GetBoardControl;
 
 public class FrontController extends HttpServlet {
 
@@ -18,6 +19,7 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		map.put("/boardList.do", new BoardListControl());
+		map.put("/getBoard.do", new GetBoardControl());
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package co.yedam.board.web;
 
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,20 +9,23 @@ import co.yedam.board.service.BoardVO;
 import co.yedam.board.serviceImpl.BoardServiceImpl;
 import co.yedam.common.Command;
 
-public class BoardListControl implements Command {
+public class GetBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		String bno = req.getParameter("bno");
+		
 		BoardService svc = new BoardServiceImpl();
-		List<BoardVO> list = svc.boardList();
+		BoardVO vo = svc.getBoard(Integer.parseInt(bno));
 		
-		req.setAttribute("list", list);
+		req.setAttribute("bno", vo);
 		
-		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/board/boardList.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/board/getBoard.jsp");
 		try {
 			rd.forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 }
