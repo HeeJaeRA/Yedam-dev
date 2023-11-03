@@ -35,6 +35,8 @@
         </tr>
     </table>
     <p><a href="boardList.do">목록으로</a></p>
+    <p><a href="#">수정</a></p>
+    <p><a href="deleteBoard.do?bno=<%=vo.getBoardNo()%>">삭제</a></p>
 </body>
 
 </html>

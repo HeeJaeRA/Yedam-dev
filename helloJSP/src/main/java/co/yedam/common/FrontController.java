@@ -13,6 +13,7 @@ import co.yedam.board.web.AddBoardControl;
 import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
 import co.yedam.board.web.GetBoardControl;
+import co.yedam.board.web.RemoveBoardControl;
 
 public class FrontController extends HttpServlet {
 
@@ -24,6 +25,8 @@ public class FrontController extends HttpServlet {
 		map.put("/getBoard.do", new GetBoardControl());
 		map.put("/boardForm.do", new BoardFormControl());
 		map.put("/addBoard.do", new AddBoardControl());
+		
+		map.put("/deleteBoard.do", new RemoveBoardControl());
 	}
 
 	@Override

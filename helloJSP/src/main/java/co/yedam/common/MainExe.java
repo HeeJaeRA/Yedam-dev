@@ -23,6 +23,7 @@ public class MainExe {
 		vo.setTitle("오번째제목");
 		vo.setContent("오번째내용");		
 		vo.setWriter("USER05");
+		dao.update(vo);
 		
 		System.out.println(dao.list());
 		

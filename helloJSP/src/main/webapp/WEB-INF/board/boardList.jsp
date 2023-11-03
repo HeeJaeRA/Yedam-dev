@@ -35,7 +35,7 @@
 				<td><%=vo.getWriteDate()%></td>
 			</tr>
 			<% 
-			} 
+			}
 			%>
 		</tbody>
 	</table>
