@@ -13,7 +13,7 @@
     <%
     BoardVO vo = (BoardVO) request.getAttribute("bno");
     %>
-    <table board="1">
+    <table border="1">
         <tr>
             <th>글 번호</th>
             <td><%=vo.getBoardNo()%></td>

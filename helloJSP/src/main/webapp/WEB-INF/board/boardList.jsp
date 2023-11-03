@@ -39,6 +39,7 @@
 			%>
 		</tbody>
 	</table>
+	<p><a href="boardForm.do">등록화면</a></p>
 </body>
 
 </html>
