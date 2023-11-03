@@ -15,8 +15,8 @@ public class FrontController extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		map.put("/FirstServlet.do", new FirstControl());
-		map.put("/second.do", new SecondControl());
+//		map.put("/FirstServlet.do", new FirstControl());
+//		map.put("/second.do", new SecondControl());
 	}
 	
 	@Override
