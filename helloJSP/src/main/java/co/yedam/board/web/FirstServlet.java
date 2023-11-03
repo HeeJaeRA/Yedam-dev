@@ -7,12 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/FirstServlet.do")
+//@WebServlet("/FirstServlet.do")
 public class FirstServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public FirstServlet() {
         super();
+    }
+    
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	System.out.println("Service 실행");
+    	doGet(req, resp);
+    	
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
