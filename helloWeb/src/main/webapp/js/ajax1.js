@@ -24,6 +24,7 @@ setTimeout(function() {
 }, 2000);
 console.log(friendsA);
 
+// 비동기방식을 동기방식처럼 처리
 // setTimeout(function () {
 //     friendsA.push('홍길동');
 //     setTimeout(function () {
