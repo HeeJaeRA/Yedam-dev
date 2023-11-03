@@ -31,8 +31,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO getBoard(int boardNo) {
-		BoardVO vo = dao.getBoard(boardNo);
-		return vo;
+		dao.updateCnt(boardNo);
+		return dao.getBoard(boardNo);
 	}
 
 }
