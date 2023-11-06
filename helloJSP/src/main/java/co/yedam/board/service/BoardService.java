@@ -11,7 +11,7 @@ public interface BoardService {
 	public BoardVO getBoard(int boardNo);
 	
 	//로그인 처리
-	public boolean loginCheck(String id, String pw);
+	public MemberVO loginCheck(String id, String pw);
 	
 	public List<MemberVO> memberList();
 

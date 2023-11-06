@@ -162,9 +162,10 @@ public class BoardDAO {
 		return 0;
 	}
 	
-	public boolean getUser(String id, String pw) {
+	public MemberVO getUser(String id, String pw) {
 		String sql = "SELECT * FROM MEM WHERE MID = ? AND PASS = ?";
 		conn = ds.getConnection();
+		MemberVO vo = new MemberVO();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
@@ -172,14 +173,17 @@ public class BoardDAO {
 			rs = psmt.executeQuery();
 			
 			if (rs.next()) {
-				return true;
+				vo.setId(rs.getString("MID"));
+				vo.setPw(rs.getString("PASS"));
+				vo.setRespon(rs.getString("RESPONSIBILITY"));
+				return vo;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		return false;
+		return null;
 	}
 
 	public List<MemberVO> memlist() {

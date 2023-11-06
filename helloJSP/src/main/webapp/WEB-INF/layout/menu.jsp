@@ -18,6 +18,7 @@
 <body>
 <%
 	String logId = (String) session.getAttribute("logId");
+	String respon = (String) session.getAttribute("respon");
 %>
 	<div class="d-flex" id="wrapper">
 		<!-- Sidebar-->
@@ -34,7 +35,7 @@
 				<%	} else {	%>
 					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃</a>
 				<%	}		%>
-				<%	if (logId != null && logId.equals("M001")) { %>
+				<%	if (respon != null && respon.equals("ADMIN")) { %>
 				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원관리</a>
 				<% } else { %>
 				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#">#</a>

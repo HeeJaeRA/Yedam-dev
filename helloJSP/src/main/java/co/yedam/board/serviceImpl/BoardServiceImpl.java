@@ -37,7 +37,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public boolean loginCheck(String id, String pw) {
+	public MemberVO loginCheck(String id, String pw) {
 		return dao.getUser(id, pw);
 	}
 
