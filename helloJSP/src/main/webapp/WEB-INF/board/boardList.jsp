@@ -35,5 +35,4 @@
 	</tbody>
 </table>
 <p><a href="boardForm.do">등록화면</a></p>
-
 <%@include file="../layout/footer.jsp"%>

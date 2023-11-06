@@ -39,8 +39,13 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
+				<% if (logId.equals(vo.getWriter())) {	%>
 					<input type="submit" value="수정" class="btn btn-primary"> 
 					<input type="button" value="삭제" onclick="location.href='removeBoard.do?bno=<%=vo.getBoardNo()%>'" class="btn btn-warning">
+				<% } else { %>				
+					<input type="submit" value="수정" disabled>
+					<input type="button" value="삭제" disabled>
+				<% } %>
 				</td>
 			</tr>
 		</table>

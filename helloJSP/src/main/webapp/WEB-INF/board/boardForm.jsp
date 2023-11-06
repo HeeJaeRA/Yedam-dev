@@ -6,10 +6,6 @@
 <%@include file="../layout/menu.jsp"%>
 <%@include file="../layout/header.jsp"%>
 
-<%
-	String logId = (String) session.getAttribute("logId"); 
-%>
-
 	<h3>게시글 등록화면</h3>
 	<form action="addBoard.do" method="post" enctype="multipart/form-data">
 		<table class="table">
@@ -19,7 +15,7 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="writer" class="form-control" value="<%=logId%>"></td>
+				<td><input type="text" name="writer"class="form-control" readonly value="<%=logId%>"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><textarea cols="40" rows="6" name="content"></textarea></td>
