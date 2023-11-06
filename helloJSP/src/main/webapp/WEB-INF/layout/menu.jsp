@@ -38,7 +38,7 @@
 				<%	if (respon != null && respon.equals("ADMIN")) { %>
 				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원관리</a>
 				<% } else { %>
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#">#</a>
+				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#" style="display: none;"></a>
 				<% } %>
 				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a> 
 				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a> 
