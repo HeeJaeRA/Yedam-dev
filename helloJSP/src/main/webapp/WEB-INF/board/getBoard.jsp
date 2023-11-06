@@ -25,11 +25,15 @@
 				<td colspan="3"><%=vo.getTitle()%></td>
 			</tr>
 			<tr>
-				<td colspan="4"><textarea rows="5" cols="40"><%=vo.getContent()%></textarea></td>
+				<td colspan="4"><textarea rows="5" cols="40" class="form-control"><%=vo.getContent()%></textarea></td>
 			</tr>
 			<tr>
 				<th>이미지</th>
-				<td colspan="3"><img src="images/<%=vo.getImage()%>" width="100px" style="display: block; margin: 0px auto;"></td>
+				<%	if (vo.getImage() == null) { %>
+					<td colspan="3"></td>
+				<%	} else { %>
+					<td colspan="3"><img src="images/<%=vo.getImage()%>" width="100px" style="display: block; margin: 0px auto;"></td>
+				<%	} %>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -39,7 +43,7 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-				<% if (logId.equals(vo.getWriter())) {	%>
+				<% if (logId != null && logId.equals(vo.getWriter())) {	%>
 					<input type="submit" value="수정" class="btn btn-primary"> 
 					<input type="button" value="삭제" onclick="location.href='removeBoard.do?bno=<%=vo.getBoardNo()%>'" class="btn btn-warning">
 				<% } else { %>				

@@ -18,7 +18,7 @@
 				<td><input type="text" name="writer"class="form-control" readonly value="<%=logId%>"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea cols="40" rows="6" name="content"></textarea></td>
+				<td colspan="2"><textarea cols="40" rows="6" name="content" class="form-control"></textarea></td>
 			</tr>
 			<tr>
 				<th>파일명</th>
