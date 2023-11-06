@@ -4,19 +4,16 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="UTF-8">
-	<title>getBoard.jsp</title>
-</head>
+<%@include file="../layout/menu.jsp"%>
+<%@include file="../layout/header.jsp"%>
 
-<body>
 	<%
 	BoardVO vo = (BoardVO) request.getAttribute("bno");
 	%>
 	<form action="modifyForm.do" name="myFrm">
 	<h3>상세 화면</h3>
 		<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>">
-		<table border="1">
+		<table class="table">
 			<tr>
 				<th>글 번호</th>
 				<td><%=vo.getBoardNo()%></td>
@@ -49,6 +46,5 @@
 		</table>
 	</form>
 	<p><a href="boardList.do">목록으로</a></p>
-</body>
-
-</html>
+	
+<%@include file="../layout/footer.jsp"%>

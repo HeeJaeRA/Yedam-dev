@@ -23,6 +23,8 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		map.put("/main.do", new MainControl());
+		
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
 		

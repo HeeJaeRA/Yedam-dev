@@ -3,15 +3,12 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="UTF-8">
-	<title>boardForm.jsp</title>
-</head>
+<%@include file="../layout/menu.jsp"%>
+<%@include file="../layout/header.jsp"%>
 
-<body>
 	<h3>게시글 등록화면</h3>
 	<form action="addBoard.do" method="post" enctype="multipart/form-data">
-		<table border="1">
+		<table class="table">
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title"></td>
@@ -35,6 +32,5 @@
 			</tr>
 		</table>
 	</form>
-</body>
 
-</html>
+<%@include file="../layout/footer.jsp"%>
