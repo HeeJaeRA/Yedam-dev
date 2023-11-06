@@ -12,5 +12,7 @@ public interface BoardService {
 	
 	//로그인 처리
 	public boolean loginCheck(String id, String pw);
+	
+	public List<MemberVO> memberList();
 
 }

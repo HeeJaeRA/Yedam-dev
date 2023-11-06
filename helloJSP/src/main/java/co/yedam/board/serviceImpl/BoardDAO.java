@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.yedam.board.service.BoardVO;
+import co.yedam.board.service.MemberVO;
 import co.yedam.common.DataSource;
 
 public class BoardDAO {
@@ -179,6 +180,31 @@ public class BoardDAO {
 			close();
 		}
 		return false;
+	}
+
+	public List<MemberVO> memlist() {
+		List<MemberVO> members = new ArrayList<>();
+		MemberVO vo;
+		String sql = "SELECT * FROM MEM ORDER BY MID";
+		conn = ds.getConnection();
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				vo = new MemberVO();
+				vo.setId(rs.getString("MID"));
+				vo.setPw(rs.getString("PASS"));
+				vo.setName(rs.getString("NAME"));
+				vo.setPhone(rs.getString("PHONE"));
+				vo.setRespon(rs.getString("RESPONSIBILITY"));
+				members.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return members;
 	}
 
 }
