@@ -6,28 +6,32 @@
 <%@include file="../layout/menu.jsp"%>
 <%@include file="../layout/header.jsp"%>
 
+<%
+	String logId = (String) session.getAttribute("logId"); 
+%>
+
 	<h3>게시글 등록화면</h3>
 	<form action="addBoard.do" method="post" enctype="multipart/form-data">
 		<table class="table">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title"></td>
+				<td><input type="text" name="title" class="form-control"></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="writer"></td>
+				<td><input type="text" name="writer" class="form-control" value="<%=logId%>"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><textarea cols="40" rows="6" name="content"></textarea></td>
 			</tr>
 			<tr>
 				<th>파일명</th>
-				<td><input type="file" name="img"></td>
+				<td><input type="file" name="img" class="form-control"></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-				<input type="submit" value="저장">
-				<input type="reset" value="초기화">
+				<input type="submit" value="저장" class="btn btn-primary">
+				<input type="reset" value="초기화" class="btn btn-warning">
 				</td>
 			</tr>
 		</table>

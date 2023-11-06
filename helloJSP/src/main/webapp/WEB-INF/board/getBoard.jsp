@@ -12,7 +12,7 @@
 	%>
 	<form action="modifyForm.do" name="myFrm">
 	<h3>상세 화면</h3>
-		<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>">
+		<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>" class="form-control">
 		<table class="table">
 			<tr>
 				<th>글 번호</th>
@@ -39,8 +39,8 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<input type="submit" value="수정"> 
-					<input type="button" value="삭제" onclick="location.href='removeBoard.do?bno=<%=vo.getBoardNo()%>'">
+					<input type="submit" value="수정" class="btn btn-primary"> 
+					<input type="button" value="삭제" onclick="location.href='removeBoard.do?bno=<%=vo.getBoardNo()%>'" class="btn btn-warning">
 				</td>
 			</tr>
 		</table>

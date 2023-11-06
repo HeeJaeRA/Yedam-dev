@@ -34,5 +34,10 @@ public class BoardServiceImpl implements BoardService {
 		dao.updateCnt(boardNo);
 		return dao.getBoard(boardNo);
 	}
+	
+	@Override
+	public boolean loginCheck(String id, String pw) {
+		return dao.getUser(id, pw);
+	}
 
 }

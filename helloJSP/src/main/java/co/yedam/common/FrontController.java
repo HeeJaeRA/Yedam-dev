@@ -25,6 +25,9 @@ public class FrontController extends HttpServlet {
 	public void init() throws ServletException {
 		map.put("/main.do", new MainControl());
 		
+		map.put("/loginForm.do", new LoginFormControl());
+		map.put("/login.do", new LoginControl());
+		
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
 		

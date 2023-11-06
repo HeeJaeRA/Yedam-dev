@@ -40,7 +40,5 @@ public class ModifyBoardControl implements Command {
 				e.printStackTrace();
 			}
 		}
-
 	}
-
 }
