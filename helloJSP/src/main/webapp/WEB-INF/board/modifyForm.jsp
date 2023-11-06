@@ -25,7 +25,11 @@
 			</tr>
 			<tr>
 				<th>이미지</th>
-				<td><img src="images/<%=vo.getImage()%>" width="100px" style="display: block; margin: 0px auto;"></td>
+				<%	if (vo.getImage() == null) { %>
+					<td colspan="3"></td>
+				<%	} else { %>
+					<td colspan="3"><img src="images/<%=vo.getImage()%>" width="100px" style="display: block; margin: 0px auto;"></td>
+				<%	} %>
 			</tr>
 			<tr>
 				<td colspan="2">
