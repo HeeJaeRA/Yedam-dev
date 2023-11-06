@@ -30,13 +30,14 @@ public class BoardDAO {
 	}
 
 	public int insert(BoardVO vo) {
-		String sql = "INSERT INTO BOARD (BOARD_NO, TITLE, CONTENT, WRITER) VALUES (SEQ_BOARD.NEXTVAL, ?, ?, ?)";
+		String sql = "INSERT INTO BOARD (BOARD_NO, TITLE, CONTENT, WRITER, IMAGE) VALUES (SEQ_BOARD.NEXTVAL, ?, ?, ?, ?)";
 		conn = ds.getConnection();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getTitle());
 			psmt.setString(2, vo.getContent());
 			psmt.setString(3, vo.getWriter());
+			psmt.setString(4, vo.getImage());
 
 			int r = psmt.executeUpdate();
 			return r;
@@ -49,14 +50,15 @@ public class BoardDAO {
 	}
 
 	public int update(BoardVO vo) {
-		String sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, IMAGE = NVL(?, IMAGE), LAST_UPDATE = SYSDATE WHERE BOARD_NO = ?";
+		String sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, WRITER = ?, IMAGE = NVL(?, IMAGE), LAST_UPDATE = SYSDATE WHERE BOARD_NO = ?";
 		conn = ds.getConnection();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getTitle());
 			psmt.setString(2, vo.getContent());
-			psmt.setString(3, vo.getImage());
-			psmt.setInt(4, vo.getBoardNo());
+			psmt.setString(3, vo.getWriter());
+			psmt.setString(4, vo.getImage());
+			psmt.setInt(5, vo.getBoardNo());
 
 			int r = psmt.executeUpdate();
 			return r;

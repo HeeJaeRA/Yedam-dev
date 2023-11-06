@@ -13,6 +13,8 @@ import co.yedam.board.web.AddBoardControl;
 import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
 import co.yedam.board.web.GetBoardControl;
+import co.yedam.board.web.ModifyBoardControl;
+import co.yedam.board.web.ModifyFormControl;
 import co.yedam.board.web.RemoveBoardControl;
 
 public class FrontController extends HttpServlet {
@@ -23,14 +25,19 @@ public class FrontController extends HttpServlet {
 	public void init() throws ServletException {
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/getBoard.do", new GetBoardControl());
+		
 		map.put("/boardForm.do", new BoardFormControl());
 		map.put("/addBoard.do", new AddBoardControl());
 		
-		map.put("/deleteBoard.do", new RemoveBoardControl());
+		map.put("/modifyForm.do", new ModifyFormControl());
+		map.put("/modifyBoard.do", new ModifyBoardControl());
+		
+		map.put("/removeBoard.do", new RemoveBoardControl());
 	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html; charset=utf-8");
 
 		String uri = req.getRequestURI();
