@@ -105,6 +105,10 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 
 	document.querySelector('#addReply').addEventListener('click', function(e) {
 		let reply = document.querySelector('#replyContent').value;
+		if (!bno || writer == 'null' || !reply) {
+			alert('제대로 입력하세요.');
+			return;
+		}
 		
 		fetch('addReply.do', {
 			method: 'post',
