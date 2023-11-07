@@ -100,6 +100,22 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 		temp.querySelector('span:nth-of-type(3)').innerHTML = reply.replyer;
 		temp.querySelector('span:nth-of-type(4)').innerHTML = reply.replyDate;
 
+		temp.querySelector('#template> button').addEventListener('click', function(e) {
+			fetch('removeReply.do', {
+				method: 'post',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				body: 'replyNo=' + reply.replyNo
+			})
+			.then(resolve => resolve.json())
+			.then(result => {
+				if (result.retCode == 'OK') {
+					temp.remove();
+				} else {
+					alert('삭제 실패');
+				}
+			})
+		})
+
 		return temp;
 	}
 
