@@ -1,13 +1,16 @@
 package co.yedam.common;
 
-import co.yedam.board.service.BoardVO;
-import co.yedam.board.serviceImpl.BoardDAO;
+import org.apache.ibatis.session.SqlSession;
+
+import co.yedam.reply.mapper.ReplyMapper;
+import co.yedam.reply.service.ReplyVO;
 
 public class MainExe {
 
 	public static void main(String[] args) {
-	
-	// DB
+
+		// 게시판 DB
+
 //	CREATE TABLE BOARD (
 //		    BOARD_NO        NUMBER,
 //		    TITLE           VARCHAR2(100)   NOT NULL,
@@ -33,6 +36,43 @@ public class MainExe {
 //		VALUES (SEQ_BOARD.NEXTVAL, '두번째제목', '두번째내용', 'USER02');
 //		INSERT INTO BOARD (BOARD_NO, TITLE, CONTENT, WRITER)
 //		VALUES (SEQ_BOARD.NEXTVAL, '세번째제목', '세번째내용', 'USER01');
+
+		// 멤버 DB
+
+//		ALTER TABLE MEM ADD (RESPONSBILITY VARCHAR2(10) DEFAULT 'USER');
+//		UPDATE MEM SET RESPONSBILITY = 'ADMIN' WHERE MID = 'M001';
+//		UPDATE MEM SET RESPONSBILITY = 'USER';
+
+		// 댓글 DB
+
+//		CREATE SEQUENCE SEQ_REPLY;
+//
+//		CREATE TABLE REPLY (
+//		REPLY_NO    NUMBER,
+//		BOARD_NO    NUMBER          NOT NULL,
+//		REPLY       VARCHAR2(100)   NOT NULL,
+//		REPLYER     VARCHAR2(30)    NOT NULL,
+//		REPLY_DATE  DATE            DEFAULT SYSDATE);
+//
+//		ALTER TABLE REPLY ADD CONSTRAINT REPLY_PK PRIMARY KEY (REPLY_NO);
+//
+//		SELECT * FROM REPLY;
+//
+//		COMMIT;
+//
+//		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
+//		VALUES (SEQ_REPLY.NEXTVAL, 1, '테스트 댓글 1번', 'USER11');
+//		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
+//		VALUES (SEQ_REPLY.NEXTVAL, 1, '테스트 댓글 2번', 'USER12');
+//		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
+//		VALUES (SEQ_REPLY.NEXTVAL, 1, '테스트 댓글 3번', 'USER11');
+//
+//		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
+//		VALUES (SEQ_REPLY.NEXTVAL, 2, '테스트 댓글 1번', 'USER11');
+//		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
+//		VALUES (SEQ_REPLY.NEXTVAL, 2, '테스트 댓글 2번', 'USER12');
+//		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
+//		VALUES (SEQ_REPLY.NEXTVAL, 2, '테스트 댓글 3번', 'USER11');
 
 	}
 }

@@ -118,7 +118,7 @@ public class BoardDAO {
 
 	public BoardVO getBoard(int boardNo) {
 		BoardVO vo;
-		String sql = "SELECT * FROM BOARD WHERE BOARD_NO = ? ORDER BY BOARD_NO";
+		String sql = "SELECT * FROM BOARD WHERE BOARD_NO = ?";
 		conn = ds.getConnection();
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -173,9 +173,9 @@ public class BoardDAO {
 			rs = psmt.executeQuery();
 			
 			if (rs.next()) {
-				vo.setId(rs.getString("MID"));
+				vo.setMid(rs.getString("MID"));
 				vo.setPw(rs.getString("PASS"));
-				vo.setRespon(rs.getString("RESPONSIBILITY"));
+				vo.setResponsibility(rs.getString("RESPONSIBILITY"));
 				return vo;
 			}
 		} catch (SQLException e) {
@@ -196,11 +196,11 @@ public class BoardDAO {
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new MemberVO();
-				vo.setId(rs.getString("MID"));
+				vo.setMid(rs.getString("MID"));
 				vo.setPw(rs.getString("PASS"));
 				vo.setName(rs.getString("NAME"));
 				vo.setPhone(rs.getString("PHONE"));
-				vo.setRespon(rs.getString("RESPONSIBILITY"));
+				vo.setResponsibility(rs.getString("RESPONSIBILITY"));
 				members.add(vo);
 			}
 		} catch (SQLException e) {

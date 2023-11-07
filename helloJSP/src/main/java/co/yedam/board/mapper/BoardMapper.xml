@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "path/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.board.mapper.BoardMapper">
+  
+  <select id="selectList" resultType="co.yedam.board.service.BoardVO">
+    SELECT * FROM BOARD ORDER BY BOARD_NO
+  </select>
+  
+  <select id="select" resultType="co.yedam.board.service.BoardVO" parameterType="int">
+  	SELECT * FROM BOARD WHERE BOARD_NO = #{boardNo}
+  </select>
+  
+  <select id="getUser" resultType="co.yedam.board.service.MemberVO">
+  	SELECT * FROM MEM WHERE MID = #{id} AND PASS = #{pw}
+  </select>
+  
+  <select id="selectMem" resultType="co.yedam.board.service.MemberVO">
+  	SELECT * FROM MEM ORDER BY MID
+  </select>
+  
+  <insert id="insert" parameterType="co.yedam.board.service.BoardVO">
+  	INSERT INTO BOARD (BOARD_NO, TITLE, CONTENT, WRITER, IMAGE) VALUES (SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer}, #{image})
+  </insert>
+  
+  <update id="updateCnt" parameterType="int">
+  	UPDATE BOARD SET VIEW_CNT = VIEW_CNT + 1 WHERE BOARD_NO = #{boardNo}
+  </update>
+  
+  <update id="update" parameterType="co.yedam.board.service.BoardVO">
+  	UPDATE BOARD SET TITLE = #{title}, CONTENT = #{content}, WRITER = #{writer}, IMAGE = NVL(#{image}, IMAGE), LAST_UPDATE = SYSDATE WHERE BOARD_NO = #{boardNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+  	DELETE FROM BOARD WHERE BOARD_NO = #{boardNo}
+  </delete>
+ 
+</mapper>

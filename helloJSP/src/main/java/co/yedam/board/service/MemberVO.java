@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class MemberVO {
 	
-	private String id;
+	private String mid;
 	private String pw;
 	private String name;
 	private String phone;
-	private String respon;
+	private String responsibility;
 	
 }

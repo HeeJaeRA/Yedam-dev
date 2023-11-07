@@ -25,11 +25,11 @@
 			for (MemberVO vo : list) {
 		%>
 		<tr>
-			<td><%=vo.getId()%></td>
+			<td><%=vo.getMid()%></td>
 			<td><%=vo.getPw()%></td>
 			<td><%=vo.getName()%></td>
 			<td><%=vo.getPhone()%></td>			
-			<td><%=vo.getRespon()%></td>			
+			<td><%=vo.getResponsibility()%></td>			
 		</tr>
 		<% 
 			}

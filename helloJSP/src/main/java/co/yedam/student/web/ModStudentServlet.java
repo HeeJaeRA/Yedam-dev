@@ -19,7 +19,7 @@ import co.yedam.student.service.StudentService;
 import co.yedam.student.service.StudentVO;
 import co.yedam.student.serviceImpl.StudentServiceImpl;
 
-@WebServlet ({"/deditStudent.do", "/studentMod.do"})
+@WebServlet ({"/editStudent.do", "/studentMod.do"})
 public class ModStudentServlet extends HttpServlet {
 	
 	@Override
