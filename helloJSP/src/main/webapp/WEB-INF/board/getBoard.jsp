@@ -110,7 +110,7 @@
 				showList(page);
 				return;
 			} else if (pg == 0) {
-				document.querySelector('.pagination').innerHTML = '';
+				showList(1);
 				return;
 			}
 			result.list.forEach(reply => {
@@ -165,7 +165,6 @@
 		temp.querySelector('span:nth-of-type(4)').innerHTML = reply.replyDate;
 
 		temp.querySelector('#template> button').addEventListener('click', function(e) {
-			console.log(writer);
 			if (writer == 'null' || writer != reply.replyer) {
 				alert('권한이 없습니다.');
 				return;
@@ -179,9 +178,13 @@
 			.then(resolve => resolve.json())
 			.then(result => {
 				if (result.retCode == 'OK') {
-					// temp.remove();
 					e.target.parentElement.remove();
-					showList(-1);
+					if (document.querySelectorAll('#list> li').length <= 1 && page > 1) {
+						page = page - 1;
+						showList(page - 1);
+					} else {
+						showList(page);
+					}
 				} else {
 					alert('삭제 실패');
 				}
