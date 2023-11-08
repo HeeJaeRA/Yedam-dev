@@ -8,6 +8,12 @@ import co.yedam.reply.service.ReplyVO;
 public class MainExe {
 
 	public static void main(String[] args) {
+		
+		SqlSession session = DataSourceMybatis.getInstance().openSession(true);
+		
+		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+		
+		mapper.selectList(1, 1).forEach(rep -> System.out.println(rep));
 
 		// 게시판 DB
 
@@ -73,6 +79,14 @@ public class MainExe {
 //		VALUES (SEQ_REPLY.NEXTVAL, 2, '테스트 댓글 2번', 'USER12');
 //		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
 //		VALUES (SEQ_REPLY.NEXTVAL, 2, '테스트 댓글 3번', 'USER11');
+		
+		// 댓글 DB2
+	
+//		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
+//		SELECT SEQ_REPLY.NEXTVAL, BOARD_NO, REPLY, REPLYER FROM REPLY WHERE BOARD_NO = 1;
+//
+//		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
+//		SELECT SEQ_REPLY.NEXTVAL, BOARD_NO, REPLY, REPLYER FROM REPLY WHERE BOARD_NO = 2;
 
 	}
 }

@@ -10,7 +10,15 @@
 	#list span {
 		margin: 10px;
 	}
-
+	.pagination {
+	display: inline-block;
+	}
+	.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	}
 </style>
 <%@include file="../layout/menu.jsp"%>
 <%@include file="../layout/header.jsp"%>
@@ -71,26 +79,62 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 		<td><input type="text" id="replyContent"></td>
 		<td><button id="addReply">댓글 등록</button></td>
 	</tr>
-
 </table>
 
 <h3>댓글 목록</h3>
 <ul id="list">
 	<li id="template" style="display: none;"><span>댓글 번호</span><span><b>댓글 내용</b></span><span>작성자</span><span>작성일</span><button>삭제</button></li>
 </ul>
+<div class="pagination"></div>
 
 <script>
 	let bno = document.querySelector('.boardNo').innerHTML;
 	let writer = "<%=logId%>";
-	fetch('replyList.do?bno=' + bno)
-	.then(resolve => resolve.json())
-	.then(result => {
-		result.forEach(reply => {
-			let li = makeRow(reply);
-			document.querySelector('#list').append(li);
-		});
-	})
-	.catch(err => console.log('err: ', err));
+
+	function showList(page = 1) {
+		document.querySelectorAll('#list li:not(:nth-of-type(1))').forEach(li => li.remove());
+		fetch('replyList.do?bno=' + bno + '&page=' + page)
+		.then(resolve => resolve.json())
+		.then(result => {
+			result.list.forEach(reply => {
+				let li = makeRow(reply);
+				document.querySelector('#list').append(li);
+			})
+			makePaging(result.dto);
+		})
+		.catch(err => console.log('err: ', err));
+	}
+	showList();
+
+	function makePaging(dto = {}) {
+		document.querySelector('.pagination').innerHTML = '';
+		if (dto.prev) {
+			let aTag = document.createElement('a');
+			aTag.setAttribute('href', dto.startPage - 1);
+			aTag.innerHTML = "&laquo;";
+			document.querySelector('.pagination').append(aTag);
+		}
+		for (let i = dto.startPage; i <= dto.endPage; i++) {
+			let aTag = document.createElement('a');
+			aTag.setAttribute('href', i);
+			aTag.innerHTML = i;
+			document.querySelector('.pagination').append(aTag);
+		}
+		if (dto.next) {
+			let aTag = document.createElement('a');
+			aTag.setAttribute('href', dto.endPage + 1);
+			aTag.innerHTML = "&raquo;";
+			document.querySelector('.pagination').append(aTag);
+		}
+
+		document.querySelectorAll('.pagination a').forEach(ele => {
+			ele.addEventListener('click', function(e) {
+				e.preventDefault();
+				let page = ele.getAttribute('href');
+				showList(page);
+			}) 
+		})
+	}
 
 	function makeRow(reply) {
 		let temp = document.querySelector('#template').cloneNode(true);
@@ -101,6 +145,12 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 		temp.querySelector('span:nth-of-type(4)').innerHTML = reply.replyDate;
 
 		temp.querySelector('#template> button').addEventListener('click', function(e) {
+			console.log(writer);
+			if (writer == 'null' || writer != reply.replyer) {
+				alert('권한이 없습니다.');
+				return;
+			}
+
 			fetch('removeReply.do', {
 				method: 'post',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},

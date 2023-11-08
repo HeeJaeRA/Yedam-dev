@@ -3,7 +3,12 @@
 <mapper namespace="co.yedam.reply.mapper.ReplyMapper">
 
 	<select id="selectList" resultType="co.yedam.reply.service.ReplyVO">
+		<!--  
 		SELECT * FROM REPLY WHERE BOARD_NO = #{boardNo} ORDER BY BOARD_NO, REPLY_NO
+		-->
+		<![CDATA[
+		SELECT * FROM ( SELECT /*+ INDEX(R REPLY_PK)*/ ROWNUM RN, R.* FROM REPLY R WHERE R.BOARD_NO = #{boardNo}) A WHERE A.RN > (#{page} - 1) * 5 AND A.RN <= (#{page}) * 5
+		]]>
 	</select>
 	
 	<select id="selectReply" resultType="co.yedam.reply.service.ReplyVO" parameterType="int">
