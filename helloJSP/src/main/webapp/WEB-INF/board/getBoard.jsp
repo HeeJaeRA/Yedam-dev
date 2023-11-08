@@ -105,9 +105,12 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 		fetch('replyList.do?bno=' + bno + '&page=' + pg)
 		.then(resolve => resolve.json())
 		.then(result => {
-			if (pg <= 0) {
+			if (pg < 0) {
 				page = Math.ceil(result.dto.total / 5);
-				showList(page)
+				showList(page);
+				return;
+			} else if (pg == 0) {
+				document.querySelector('.pagination').innerHTML = '';
 				return;
 			}
 			result.list.forEach(reply => {
