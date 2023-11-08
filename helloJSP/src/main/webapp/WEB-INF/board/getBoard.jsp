@@ -179,7 +179,7 @@
 			.then(result => {
 				if (result.retCode == 'OK') {
 					e.target.parentElement.remove();
-					if (document.querySelectorAll('#list> li').length <= 1 && page > 1) {
+					if (document.querySelectorAll('#list> li').length % 5 == 1 && page > 1) {
 						page = page - 1;
 						showList(page - 1);
 					} else {
