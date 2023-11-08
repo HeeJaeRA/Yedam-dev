@@ -174,7 +174,7 @@ public class BoardDAO {
 			
 			if (rs.next()) {
 				vo.setMid(rs.getString("MID"));
-				vo.setPw(rs.getString("PASS"));
+				vo.setPass(rs.getString("PASS"));
 				vo.setResponsibility(rs.getString("RESPONSIBILITY"));
 				return vo;
 			}
@@ -197,7 +197,7 @@ public class BoardDAO {
 			while (rs.next()) {
 				vo = new MemberVO();
 				vo.setMid(rs.getString("MID"));
-				vo.setPw(rs.getString("PASS"));
+				vo.setPass(rs.getString("PASS"));
 				vo.setName(rs.getString("NAME"));
 				vo.setPhone(rs.getString("PHONE"));
 				vo.setResponsibility(rs.getString("RESPONSIBILITY"));

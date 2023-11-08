@@ -1,15 +1,10 @@
-<%@page import="co.yedam.board.service.MemberVO"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@include file="../layout/menu.jsp"%>
-<%@include file="../layout/header.jsp"%>
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 
 <h3>유저 목록</h3>
-<%
-	List<MemberVO> list = (List<MemberVO>) request.getAttribute("memlist"); 
-%>
 <table class="table">
 	<thead>
 		<tr>
@@ -20,20 +15,18 @@
 			<th>회원분류</th>
 		</tr>
 	</thead>
+	
 	<tbody>
-		<% 
-			for (MemberVO vo : list) {
-		%>
-		<tr>
-			<td><%=vo.getMid()%></td>
-			<td><%=vo.getPw()%></td>
-			<td><%=vo.getName()%></td>
-			<td><%=vo.getPhone()%></td>			
-			<td><%=vo.getResponsibility()%></td>			
-		</tr>
-		<% 
-			}
-		%>
+		<c:forEach items="${memlist }" var="member">
+			<tr>
+				<td>${member.mid }</td>
+				<td>${member.pass }</td>
+				<td>${member.name }</td>
+				<td>${member.phone }</td>
+				<td>${member.responsibility }</td>
+			</tr>
+		</c:forEach>
 	</tbody>
 </table>
-<%@include file="../layout/footer.jsp"%>
+
+<jsp:include page="../layout/footer.jsp"></jsp:include>

@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@include file="../layout/menu.jsp"%>
-<%@include file="../layout/header.jsp"%>
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 
 	<h3>게시글 등록화면</h3>
 	<form action="addBoard.do" method="post" enctype="multipart/form-data">
@@ -15,7 +13,7 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="writer"class="form-control" readonly value="<%=logId%>"></td>
+				<td><input type="text" name="writer"class="form-control" readonly value="${logId }"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><textarea cols="40" rows="6" name="content" class="form-control"></textarea></td>
@@ -33,4 +31,4 @@
 		</table>
 	</form>
 
-<%@include file="../layout/footer.jsp"%>
+<jsp:include page="../layout/footer.jsp"></jsp:include>

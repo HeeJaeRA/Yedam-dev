@@ -1,35 +1,34 @@
-<%@page import="co.yedam.board.service.BoardVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@include file="../layout/menu.jsp"%>
-<%@include file="../layout/header.jsp"%>
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 
-<%
-	BoardVO vo = (BoardVO) request.getAttribute("vo");
-%>
 	<h3>게시글 수정화면</h3>
 	<form action="modifyBoard.do" method="post">
-		<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>" class="form-control">
+		<input type="hidden" name="bno" value="${vo.boardNo}" class="form-control">
 		<table class="table">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" value="<%=vo.getTitle()%>" class="form-control"></td>
+				<td><input type="text" name="title" value="${vo.title}" class="form-control"></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="writer" value="<%=vo.getWriter()%>" class="form-control" readonly></td>
+				<td><input type="text" name="writer" value="${vo.writer}" class="form-control" readonly></td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea cols="40" rows="6" name="content" class="form-control"><%=vo.getContent()%></textarea></td>
+				<td colspan="2"><textarea cols="40" rows="6" name="content" class="form-control">${vo.content}</textarea></td>
 			</tr>
 			<tr>
 				<th>이미지</th>
-				<%	if (vo.getImage() == null) { %>
-					<td colspan="3"></td>
-				<%	} else { %>
-					<td colspan="3"><img src="images/<%=vo.getImage()%>" width="100px" style="display: block; margin: 0px auto;"></td>
-				<%	} %>
+				<c:choose>
+					<c:when test="${empty vo.image}">
+						<td colspan="3"></td>
+					</c:when>
+					<c:otherwise>
+						<td colspan="3"><img src="images/${vo.image}" width="100px" style="display: block; margin: 0px auto;"></td>				
+					</c:otherwise>
+				</c:choose>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -40,4 +39,4 @@
 		</table>
 	</form>
 
-<%@include file="../layout/footer.jsp"%>
+<jsp:include page="../layout/footer.jsp"></jsp:include>

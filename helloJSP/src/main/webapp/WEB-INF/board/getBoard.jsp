@@ -1,8 +1,8 @@
 <%@page import="co.yedam.board.service.BoardVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <style>
 	ul> li {
 		list-style: none;
@@ -28,8 +28,9 @@
 
 	.pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
-<%@include file="../layout/menu.jsp"%>
-<%@include file="../layout/header.jsp"%>
+
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 
 <%
 BoardVO vo = (BoardVO) request.getAttribute("bno");
@@ -37,44 +38,50 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 
 <form action="modifyForm.do" name="myFrm">
 	<h3>상세 화면</h3>
-	<input type="hidden" name="bno" value="<%=vo.getBoardNo()%>"
+	<input type="hidden" name="bno" value="${bno.boardNo}"
 		class="form-control">
 	<table class="table">
 		<tr>
 			<th>글 번호</th>
-			<td class="boardNo"><%=vo.getBoardNo()%></td>
+			<td class="boardNo">${bno.boardNo}</td>
 			<th>작성일자</th>
-			<td><%=vo.getWriteDate()%></td>
+			<td><fmt:formatDate value="${bno.writeDate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td colspan="3"><%=vo.getTitle()%></td>
+			<td colspan="3">${bno.title}</td>
 		</tr>
 		<tr>
-			<td colspan="4"><textarea rows="5" cols="40" class="form-control"><%=vo.getContent()%></textarea></td>
+			<td colspan="4"><textarea rows="5" cols="40" class="form-control">${bno.content}</textarea></td>
 		</tr>
 		<tr>
 			<th>이미지</th>
-			<% if (vo.getImage() == null) { %>
-			<td colspan="3"></td>
-			<% } else { %>
-			<td colspan="3"><img src="images/<%=vo.getImage()%>" width="100px" style="display: block; margin: 0px auto;"></td>
-			<% } %>
+			<c:choose>
+				<c:when test="${empty bno.image }">
+					<td colspan="3"></td>
+				</c:when>
+				<c:otherwise>
+					<td colspan="3"><img src="images/${bno.image}" width="100px" style="display: block; margin: 0px auto;"></td>
+				</c:otherwise>
+			</c:choose>
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><%=vo.getWriter()%></td>
+			<td>${bno.writer}</td>
 			<th>조회수</th>
-			<td><%=vo.getViewCnt()%></td>
+			<td>${bno.viewCnt}</td>
 		</tr>
 		<tr>
 			<td colspan="4" align="center">
-				<% if (logId != null && logId.equals(vo.getWriter())) { %> 
-				<input type="submit" value="수정" class="btn btn-primary"> 
-				<input type="button" value="삭제" onclick="location.href='removeBoard.do?bno=<%=vo.getBoardNo()%>'" class="btn btn-warning"> 
-				<% } else { %> 
-				<input type="submit" value="수정" disabled> <input type="button" value="삭제" disabled> 
-				<% } %>
+				<c:choose>
+					<c:when test="${logId } == ${vo.writer }">
+						<input type="submit" value="수정" class="btn btn-primary"> 
+						<input type="button" value="삭제" onclick="location.href='removeBoard.do?bno=<%=vo.getBoardNo()%>'" class="btn btn-warning"> 
+					</c:when>
+					<c:otherwise>
+						<input type="submit" value="수정" disabled> <input type="button" value="삭제" disabled> 			
+					</c:otherwise>
+				</c:choose>
 			</td>
 		</tr>
 	</table>
@@ -97,7 +104,7 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 
 <script>
 	let bno = document.querySelector('.boardNo').innerHTML;
-	let writer = "<%=logId%>";
+	let writer = '${logId}';
 	let page = 1;
 
 	function showList(pg = 1) {
@@ -220,4 +227,4 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 	<a href="boardList.do">목록으로</a>
 </p>
 
-<%@include file="../layout/footer.jsp"%>
+<jsp:include page="../layout/footer.jsp"></jsp:include>
