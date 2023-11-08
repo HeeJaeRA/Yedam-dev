@@ -13,12 +13,20 @@
 	.pagination {
 	display: inline-block;
 	}
+
 	.pagination a {
 	color: black;
 	float: left;
 	padding: 8px 16px;
 	text-decoration: none;
 	}
+
+	.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	}
+
+	.pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 <%@include file="../layout/menu.jsp"%>
 <%@include file="../layout/header.jsp"%>
@@ -90,6 +98,7 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 <script>
 	let bno = document.querySelector('.boardNo').innerHTML;
 	let writer = "<%=logId%>";
+	let page = 1;
 
 	function showList(page = 1) {
 		document.querySelectorAll('#list li:not(:nth-of-type(1))').forEach(li => li.remove());
@@ -118,6 +127,9 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 			let aTag = document.createElement('a');
 			aTag.setAttribute('href', i);
 			aTag.innerHTML = i;
+			if (i == page) {
+				aTag.className = 'active';
+			}
 			document.querySelector('.pagination').append(aTag);
 		}
 		if (dto.next) {
@@ -130,7 +142,7 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 		document.querySelectorAll('.pagination a').forEach(ele => {
 			ele.addEventListener('click', function(e) {
 				e.preventDefault();
-				let page = ele.getAttribute('href');
+				page = ele.getAttribute('href');
 				showList(page);
 			}) 
 		})

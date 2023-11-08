@@ -27,7 +27,7 @@ public class ReplyListControl implements Command {
 		String page = req.getParameter("page");
 		page = page == null ? "1" : page;
 		
-		PageDTO dto = new PageDTO(Integer.parseInt(bno), 64, Integer.parseInt(page));
+		PageDTO dto = new PageDTO(Integer.parseInt(bno), 96, Integer.parseInt(page));
 		
 		ReplyService svc = new ReplyServiceImpl();
 		List<ReplyVO> list = svc.replyList(Integer.parseInt(bno), Integer.parseInt(page));
