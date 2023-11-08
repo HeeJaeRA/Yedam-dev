@@ -1,7 +1,8 @@
-<%@page import="co.yedam.board.service.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<jsp:include page="../layout/menu.jsp"></jsp:include>
+<jsp:include page="../layout/header.jsp"></jsp:include>
 
 <style>
 	ul> li {
@@ -29,17 +30,9 @@
 	.pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 
-<jsp:include page="../layout/menu.jsp"></jsp:include>
-<jsp:include page="../layout/header.jsp"></jsp:include>
-
-<%
-BoardVO vo = (BoardVO) request.getAttribute("bno");
-%>
-
 <form action="modifyForm.do" name="myFrm">
 	<h3>상세 화면</h3>
-	<input type="hidden" name="bno" value="${bno.boardNo}"
-		class="form-control">
+	<input type="hidden" name="bno" value="${bno.boardNo}" class="form-control">
 	<table class="table">
 		<tr>
 			<th>글 번호</th>
@@ -74,9 +67,9 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 		<tr>
 			<td colspan="4" align="center">
 				<c:choose>
-					<c:when test="${logId } == ${vo.writer }">
+					<c:when test="${!empty logId && logId == bno.writer}">
 						<input type="submit" value="수정" class="btn btn-primary"> 
-						<input type="button" value="삭제" onclick="location.href='removeBoard.do?bno=<%=vo.getBoardNo()%>'" class="btn btn-warning"> 
+						<input type="button" value="삭제" onclick="location.href='removeBoard.do?bno=${bno.boardNo}'" class="btn btn-warning"> 
 					</c:when>
 					<c:otherwise>
 						<input type="submit" value="수정" disabled> <input type="button" value="삭제" disabled> 			

@@ -28,7 +28,6 @@
 					<div class="sidebar-heading border-bottom bg-light">(${logId }) 환영합니다.</div>
 				</c:otherwise>
 			</c:choose>
-		
 			<div class="list-group list-group-flush">
 				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글 목록</a>
 				<c:choose>
@@ -42,7 +41,7 @@
 				<c:if test="${!empty responsibility && responsibility == 'ADMIN'}">
 					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원 관리</a>
 				</c:if>
-				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#">Event</a> 
+				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="chartForm.do">차트</a> 
 				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a> 
 				<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
 			</div>

@@ -194,6 +194,7 @@ public class BoardDAO {
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
+			
 			while (rs.next()) {
 				vo = new MemberVO();
 				vo.setMid(rs.getString("MID"));

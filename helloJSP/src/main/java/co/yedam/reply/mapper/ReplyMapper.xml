@@ -19,6 +19,10 @@
 		SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = #{boardNo}
 	</select>
 
+	<select id="getReplyCntByMember" resultType="co.yedam.common.ChartVO">
+  		SELECT REPLYER, COUNT(*) AS REPLY_CNT FROM REPLY GROUP BY REPLYER
+  	</select>
+
 	<insert id="insertReply" parameterType="co.yedam.reply.service.ReplyVO">
 		<selectKey keyProperty="replyNo" resultType="int" order="BEFORE">
 			SELECT SEQ_REPLY.NEXTVAL AS REPLY_NO FROM DUAL
