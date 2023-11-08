@@ -14,6 +14,10 @@
 	<select id="selectReply" resultType="co.yedam.reply.service.ReplyVO" parameterType="int">
 		SELECT * FROM REPLY WHERE REPLY_NO = #{replyNo}
 	</select>
+	
+	<select id="getTotalCnt" resultType="int">
+		SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = #{boardNo}
+	</select>
 
 	<insert id="insertReply" parameterType="co.yedam.reply.service.ReplyVO">
 		<selectKey keyProperty="replyNo" resultType="int" order="BEFORE">

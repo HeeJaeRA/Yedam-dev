@@ -14,4 +14,6 @@ public interface ReplyMapper {
 	public int updateReply(ReplyVO vo);
 	public int deleteReply(int replyNo);
 	
+	public int getTotalCnt(int boardNo);
+	
 }

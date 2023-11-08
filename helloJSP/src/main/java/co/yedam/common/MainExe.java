@@ -8,13 +8,6 @@ import co.yedam.reply.service.ReplyVO;
 public class MainExe {
 
 	public static void main(String[] args) {
-		
-		SqlSession session = DataSourceMybatis.getInstance().openSession(true);
-		
-		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
-		
-		mapper.selectList(1, 1).forEach(rep -> System.out.println(rep));
-
 		// 게시판 DB
 
 //	CREATE TABLE BOARD (
@@ -87,6 +80,5 @@ public class MainExe {
 //
 //		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER)
 //		SELECT SEQ_REPLY.NEXTVAL, BOARD_NO, REPLY, REPLYER FROM REPLY WHERE BOARD_NO = 2;
-
 	}
 }

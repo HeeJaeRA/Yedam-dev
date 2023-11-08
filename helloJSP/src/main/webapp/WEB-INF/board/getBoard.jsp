@@ -100,11 +100,16 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 	let writer = "<%=logId%>";
 	let page = 1;
 
-	function showList(page = 1) {
+	function showList(pg = 1) {
 		document.querySelectorAll('#list li:not(:nth-of-type(1))').forEach(li => li.remove());
-		fetch('replyList.do?bno=' + bno + '&page=' + page)
+		fetch('replyList.do?bno=' + bno + '&page=' + pg)
 		.then(resolve => resolve.json())
 		.then(result => {
+			if (pg <= 0) {
+				page = Math.ceil(result.dto.total / 5);
+				showList(page)
+				return;
+			}
 			result.list.forEach(reply => {
 				let li = makeRow(reply);
 				document.querySelector('#list').append(li);
@@ -173,6 +178,7 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 				if (result.retCode == 'OK') {
 					// temp.remove();
 					e.target.parentElement.remove();
+					showList(-1);
 				} else {
 					alert('삭제 실패');
 				}
@@ -197,7 +203,8 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 		.then(resolve => resolve.json())
 		.then(result => {
 			if (result.retCode == 'OK') {
-				document.querySelector('#list').append(makeRow(result.vo));
+				// document.querySelector('#list').append(makeRow(result.vo));
+				showList(-1);
 			} else {
 				alert('등록 실패');
 			}

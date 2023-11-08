@@ -40,6 +40,9 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.selectReply(replyNo);
 	}
 	
-	
+	@Override
+	public int getTotalCnt(int boardNo) {
+		return mapper.getTotalCnt(boardNo);
+	}
 
 }
