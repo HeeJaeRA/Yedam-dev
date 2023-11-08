@@ -11,7 +11,6 @@ import com.google.gson.GsonBuilder;
 
 import co.yedam.common.Command;
 import co.yedam.reply.service.ReplyService;
-import co.yedam.reply.service.ReplyVO;
 import co.yedam.reply.serviceImpl.ReplyServiceImpl;
 
 public class RemoveReplyControl implements Command {
@@ -19,28 +18,18 @@ public class RemoveReplyControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 
-		ReplyVO vo = new ReplyVO();
 		ReplyService svc = new ReplyServiceImpl();
 
 		String rno = req.getParameter("replyNo");
 
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		Map<String, String> map = new HashMap<>();
 
-		Map<String, Object> map = new HashMap<>();
+		Gson gson = new GsonBuilder().create();
 
 		if (svc.removeReply(Integer.parseInt(rno))) {
-			try {
-				map.put("retCode", "OK");
-				map.put("vo", vo);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			map.put("retCode", "OK");
 		} else {
-			try {
-				map.put("retCode", "NG");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			map.put("retCode", "NG");
 		}
 
 		resp.setContentType("text/json; charset=UTF-8");

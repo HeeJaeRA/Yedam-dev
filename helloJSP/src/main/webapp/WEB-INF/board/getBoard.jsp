@@ -109,13 +109,14 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 			.then(resolve => resolve.json())
 			.then(result => {
 				if (result.retCode == 'OK') {
-					temp.remove();
+					// temp.remove();
+					e.target.parentElement.remove();
 				} else {
 					alert('삭제 실패');
 				}
 			})
+			.catch(err => console.log(err));
 		})
-
 		return temp;
 	}
 
@@ -139,6 +140,7 @@ BoardVO vo = (BoardVO) request.getAttribute("bno");
 				alert('등록 실패');
 			}
 		})
+		.catch(err => console.log(err));
 	})
 </script>
 
