@@ -1,8 +1,5 @@
 package co.yedam.board.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,23 +8,19 @@ import co.yedam.board.service.BoardVO;
 import co.yedam.board.serviceImpl.BoardServiceImpl;
 import co.yedam.common.Command;
 
-public class BoardListControl implements Command {
+public class ModifyFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "board/boardList.tiles";
-		
+		String bno = req.getParameter("bno");
 		BoardService svc = new BoardServiceImpl();
-		List<BoardVO> list = svc.boardList();
-		
-		req.setAttribute("list", list);
+		BoardVO vo = svc.getBoard(Integer.parseInt(bno));
+		req.setAttribute("vo", vo);
 		
 		try {
-			req.getRequestDispatcher(path).forward(req, resp);
+			req.getRequestDispatcher("WEB-INF/board/modifyForm.jsp").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h3>index.jsp</h3>
-	<a href="myapp.homepage.tiles">tiles 페이지</a>
+	<a href="#">tiles 페이지</a>
 </body>
 </html>

@@ -10,7 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.admin.web.MemberListControl;
+import co.yedam.board.web.AddBoardControl;
+import co.yedam.board.web.BoardFormControl;
 import co.yedam.board.web.BoardListControl;
+import co.yedam.board.web.GetBoardControl;
+import co.yedam.board.web.ModifyBoardControl;
+import co.yedam.board.web.ModifyFormControl;
+import co.yedam.board.web.RemoveBoardControl;
 
 public class FrontController extends HttpServlet {
 
@@ -21,6 +27,20 @@ public class FrontController extends HttpServlet {
 		map.put("/boardList.do", new BoardListControl());
 		
 		map.put("/memberList.do", new MemberListControl());
+		
+		map.put("/loginForm.do", new LoginFormControl());
+		map.put("/login.do", new LoginControl());
+		map.put("/logout.do", new LogoutControl());
+		
+		map.put("/getBoard.do", new GetBoardControl());
+		
+		map.put("/boardForm.do", new BoardFormControl());
+		map.put("/addBoard.do", new AddBoardControl());
+		
+		map.put("/modifyForm.do", new ModifyFormControl());
+		map.put("/modifyBoard.do", new ModifyBoardControl());
+		
+		map.put("/removeBoard.do", new RemoveBoardControl());
 	}
 
 	@Override
