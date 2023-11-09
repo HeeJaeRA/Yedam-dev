@@ -20,7 +20,7 @@ public class BoardFormControl implements Command {
 			}
 		} else {
 			try {			
-				req.getRequestDispatcher("WEB-INF/board/boardForm.jsp").forward(req, resp);
+				req.getRequestDispatcher("/board/boardForm.tiles").forward(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

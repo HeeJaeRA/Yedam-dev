@@ -18,7 +18,7 @@ public class ModifyFormControl implements Command {
 		req.setAttribute("vo", vo);
 		
 		try {
-			req.getRequestDispatcher("WEB-INF/board/modifyForm.jsp").forward(req, resp);
+			req.getRequestDispatcher("/board/modifyForm.tiles").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
