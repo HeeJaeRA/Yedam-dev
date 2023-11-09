@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.admin.service.MemberVO;
+import co.yedam.board.service.BoardService;
+import co.yedam.board.serviceImpl.BoardServiceImpl;
 import co.yedam.common.Command;
 
 public class MemberListControl implements Command {
@@ -17,9 +19,9 @@ public class MemberListControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path = "admin/memberList.tiles";
 		
-		List<MemberVO> list = new ArrayList<>();
-		list.add(new MemberVO());
-		req.setAttribute("member", list);
+		BoardService svc = new BoardServiceImpl();
+		List<MemberVO> list = svc.memberList();
+		req.setAttribute("memlist", list);
 		
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

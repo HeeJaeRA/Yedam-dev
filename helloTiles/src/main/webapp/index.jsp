@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h3>index.jsp</h3>
-	<a href="#">tiles 페이지</a>
+	<a href="boardList.do">게시판</a>
 </body>
 </html>
