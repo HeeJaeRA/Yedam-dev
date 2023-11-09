@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "path/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.reply.mapper.ReplyMapper">
+
+	<select id="selectList" resultType="co.yedam.reply.service.ReplyVO">
+		<!--  
+		SELECT * FROM REPLY WHERE BOARD_NO = #{boardNo} ORDER BY BOARD_NO, REPLY_NO
+		-->
+		<![CDATA[
+		SELECT * FROM ( SELECT /*+ INDEX(R REPLY_PK)*/ ROWNUM RN, R.* FROM REPLY R WHERE R.BOARD_NO = #{boardNo}) A WHERE A.RN > (#{page} - 1) * 5 AND A.RN <= (#{page}) * 5
+		]]>
+	</select>
+	
+	<select id="selectReply" resultType="co.yedam.reply.service.ReplyVO" parameterType="int">
+		SELECT * FROM REPLY WHERE REPLY_NO = #{replyNo}
+	</select>
+	
+	<select id="getTotalCnt" resultType="int">
+		SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = #{boardNo}
+	</select>
+
+	<select id="getReplyCntByMember" resultType="map">
+  		SELECT REPLYER AS REPLYER, COUNT(*) AS CNT FROM REPLY GROUP BY REPLYER
+  	</select>
+
+	<insert id="insertReply" parameterType="co.yedam.reply.service.ReplyVO">
+		<selectKey keyProperty="replyNo" resultType="int" order="BEFORE">
+			SELECT SEQ_REPLY.NEXTVAL AS REPLY_NO FROM DUAL
+		</selectKey>
+		
+		INSERT INTO REPLY (REPLY_NO, BOARD_NO, REPLY, REPLYER, REPLY_DATE) VALUES (#{replyNo}, #{boardNo}, #{reply}, #{replyer}, #{replyDate})
+	</insert>
+	
+	<update id="updateReply" parameterType="co.yedam.reply.service.ReplyVO">
+		UPDATE REPLY SET REPLY = #{reply}, REPLYER = #{replyer}, REPLY_DATE = SYSDATE WHERE REPLY_NO = #{replyNo}
+	</update>
+
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM REPLY WHERE REPLY_NO = #{replyNo}
+	</delete>
+
+</mapper>

@@ -17,6 +17,9 @@ import co.yedam.board.web.GetBoardControl;
 import co.yedam.board.web.ModifyBoardControl;
 import co.yedam.board.web.ModifyFormControl;
 import co.yedam.board.web.RemoveBoardControl;
+import co.yedam.reply.web.AddReplyControl;
+import co.yedam.reply.web.RemoveReplyControl;
+import co.yedam.reply.web.ReplyListControl;
 
 public class FrontController extends HttpServlet {
 
@@ -24,6 +27,9 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		
+		map.put("/main.do", new MainControl());
+		
 		map.put("/boardList.do", new BoardListControl());
 		
 		map.put("/memberList.do", new MemberListControl());
@@ -41,6 +47,13 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyBoard.do", new ModifyBoardControl());
 		
 		map.put("/removeBoard.do", new RemoveBoardControl());
+		
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/addReply.do", new AddReplyControl());
+		map.put("/removeReply.do", new RemoveReplyControl());
+		
+		map.put("/chartForm.do", new ChartFormControl());
+		map.put("/drawChart.do", new DrawChartControl());
 	}
 
 	@Override
