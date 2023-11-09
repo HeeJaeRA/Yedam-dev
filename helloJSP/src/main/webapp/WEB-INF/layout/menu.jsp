@@ -22,10 +22,10 @@
 		<div class="border-end bg-white" id="sidebar-wrapper">
 			<c:choose>
 				<c:when test="${empty logId }">
-					<div class="sidebar-heading border-bottom bg-light">(Guest) 입니다.</div>
+					<div class="sidebar-heading border-bottom bg-light">Guest입니다.</div>
 				</c:when>
 				<c:otherwise>
-					<div class="sidebar-heading border-bottom bg-light">(${logId }) 환영합니다.</div>
+					<div class="sidebar-heading border-bottom bg-light">${userName }님 환영합니다.</div>
 				</c:otherwise>
 			</c:choose>
 			<div class="list-group list-group-flush">

@@ -1,10 +1,10 @@
 package co.yedam.reply.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import co.yedam.common.ChartVO;
 import co.yedam.common.DataSourceMybatis;
 import co.yedam.reply.mapper.ReplyMapper;
 import co.yedam.reply.service.ReplyService;
@@ -47,7 +47,7 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 	
 	@Override
-	public List<ChartVO> getReplyCntByMember() {
+	public List<Map<String, Object>> getReplyCntByMember() {
 		return mapper.getReplyCntByMember();
 	}
 

@@ -22,6 +22,7 @@ public class LoginControl implements Command {
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("logId", vo.getMid());
+		session.setAttribute("userName", vo.getName());
 		session.setAttribute("responsibility", vo.getResponsibility());
 		
 		if (svc.loginCheck(id, pw) != null) {

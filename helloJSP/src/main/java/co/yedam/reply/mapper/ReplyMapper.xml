@@ -19,8 +19,8 @@
 		SELECT COUNT(*) FROM REPLY WHERE BOARD_NO = #{boardNo}
 	</select>
 
-	<select id="getReplyCntByMember" resultType="co.yedam.common.ChartVO">
-  		SELECT REPLYER, COUNT(*) AS REPLY_CNT FROM REPLY GROUP BY REPLYER
+	<select id="getReplyCntByMember" resultType="map">
+  		SELECT REPLYER AS REPLYER, COUNT(*) AS CNT FROM REPLY GROUP BY REPLYER
   	</select>
 
 	<insert id="insertReply" parameterType="co.yedam.reply.service.ReplyVO">

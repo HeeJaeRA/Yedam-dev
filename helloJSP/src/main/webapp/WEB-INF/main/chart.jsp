@@ -10,13 +10,11 @@
       })
       .then(result => {
     	  let arrayData = [];
-    	  arrayData.push(['Member','replyCountByMember']);
+    	  arrayData.push(['writer','cnt']);
     	  
-    	  result.vo.forEach((obj) => {
-    		  arrayData.push([obj.replyer, obj.replyCnt]);  
+    	  result.listMap.forEach((obj) => {
+    		  arrayData.push([obj.REPLYER, obj.CNT]);
     	  })
-      	  
-      	  console.log(arrayData);
     	  google.charts.load("current", {packages:["corechart"]});
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {

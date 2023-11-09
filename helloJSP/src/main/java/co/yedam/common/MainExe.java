@@ -1,13 +1,16 @@
 package co.yedam.common;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.reply.mapper.ReplyMapper;
-import co.yedam.reply.service.ReplyVO;
 
 public class MainExe {
 
 	public static void main(String[] args) {
+
 		// 게시판 DB
 
 //	CREATE TABLE BOARD (

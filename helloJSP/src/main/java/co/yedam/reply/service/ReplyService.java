@@ -1,8 +1,7 @@
 package co.yedam.reply.service;
 
 import java.util.List;
-
-import co.yedam.common.ChartVO;
+import java.util.Map;
 
 public interface ReplyService {
 	
@@ -14,5 +13,5 @@ public interface ReplyService {
 	
 	public int getTotalCnt(int boardNo);
 	
-	public List<ChartVO> getReplyCntByMember();
+	public List<Map<String, Object>> getReplyCntByMember();
 }

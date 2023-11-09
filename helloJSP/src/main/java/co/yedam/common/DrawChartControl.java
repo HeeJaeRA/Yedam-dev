@@ -19,12 +19,12 @@ public class DrawChartControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 		ReplyService svc = new ReplyServiceImpl();
-		List<ChartVO> vo = svc.getReplyCntByMember();	
+		List<Map<String, Object>> listMap = svc.getReplyCntByMember();	
 		
 		Map<String, Object> map = new HashMap<>();
 		Gson gson = new GsonBuilder().create();
 		
-		if (vo != null) map.put("vo", vo);
+		if (listMap != null) map.put("listMap", listMap);
 		try {
 			resp.getWriter().print(gson.toJson(map));
 		} catch (Exception e) {

@@ -1,10 +1,10 @@
 package co.yedam.reply.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import co.yedam.common.ChartVO;
 import co.yedam.reply.service.ReplyVO;
 
 public interface ReplyMapper {
@@ -17,5 +17,5 @@ public interface ReplyMapper {
 	
 	public int getTotalCnt(int boardNo);
 	
-	public List<ChartVO> getReplyCntByMember();
+	public List<Map<String, Object>> getReplyCntByMember();
 }
